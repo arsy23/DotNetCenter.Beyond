@@ -1,0 +1,25 @@
+<Project>
+  <PropertyGroup>
+	  <TargetStandardFrameworkNames>netstandard2.0;netstandard2.1</TargetStandardFrameworkNames>
+	  <TargetNetFrameworkNames>net5.0;netcoreapp3.1;</TargetNetFrameworkNames>
+	  <UnitTestProjectTargetFrameworkNames>net5.0;netcoreapp3.1;</UnitTestProjectTargetFrameworkNames>
+	  <RuntimeIdentifierNames>win81-x64;win81-x86;win81-arm;win81-arm64;win10-arm;win10-x64;win10-x86;win10-arm64;</RuntimeIdentifierNames>
+	  <AllAssetNames>runtime; build; native; contentfiles; analyzers</AllAssetNames>
+	  <NeutralLanguage>en-US</NeutralLanguage>
+	  <LangVersion>latest</LangVersion>
+	  <FileVersion>0.1.0</FileVersion>
+	  <AssemblyVersion>0.1.0</AssemblyVersion>
+	  <ClasslibraryVersion>0.1.0</ClasslibraryVersion>
+	  <EnableNETAnalyzers>true</EnableNETAnalyzers>
+	  <MicrosoftCodeAnalysisNetAnalyzersPackageVersion>3.3.2</MicrosoftCodeAnalysisNetAnalyzersPackageVersion>
+	  <MicrosoftNetCompilersToolsetPackageVersion>3.9.0-2.final</MicrosoftNetCompilersToolsetPackageVersion>
+	  <!--<MicrosoftCodeQualityAnalyzersPackageVersion>5.0.3</MicrosoftCodeQualityAnalyzersPackageVersion>-->
+	  <MicrosoftSourceLinkGitHubPackageVersion>1.0.0</MicrosoftSourceLinkGitHubPackageVersion>
+	  <XunitRunnerVisualStudioPackageVersion>2.4.3</XunitRunnerVisualStudioPackageVersion>
+	  <MicrosoftNETTestSdkPackageVersion>16.8.3</MicrosoftNETTestSdkPackageVersion>
+	  <CoverletCollectorPackageVersion>3.0.2</CoverletCollectorPackageVersion>
+	  <XunitPackageVersion>2.4.1</XunitPackageVersion>
+	  <EnableNullable>enable</EnableNullable>
+  
+</PropertyGroup>
+</Project>
