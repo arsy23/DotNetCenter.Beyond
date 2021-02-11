@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Authors>Arsalan Fallahpour</Authors>
+		<Description>DotNetCenter.Beyond.Mapping.Core Framework library</Description>
+		<Summary>DotNetCenter.Beyond.Mapping.Core Framework library</Summary>
+		<Copyright>Copyright Arsalan Fallahpour</Copyright>
+		<NeutralLanguage>$(NeutralLanguage)</NeutralLanguage>
+		<Title>DotNetCenter</Title>
+		<PackageId>DotNetCenter.Beyond.Mapping.Core</PackageId>
+		<Product>DotNetCenter</Product>
+		<TargetFrameworks>$(TargetStandardFrameworkNames)</TargetFrameworks>
+		<PackageTags>dotnetcenterbeyondcore;dcbeyondmappingcore;dcbeyondmappingBeyondcore;framework;</PackageTags>
+		<RuntimeIdentifiers>$(RuntimeIdentifierNames)</RuntimeIdentifiers>
+		<Version>$(ClasslibraryVersion)</Version>
+		<AssemblyVersion>$(AssemblyVersion)</AssemblyVersion>
+		<FileVersion>$(FileVersion)</FileVersion>
+		<LangVersion>$(LangVersion)</LangVersion>
+		<Features>strict</Features>
+		<Nullable>enable</Nullable>
+		<RootNamespace>DotNetCenter.Beyond.Mapping.Core</RootNamespace>
+		<AssemblyName>DotNetCenter.Beyond.Mapping.Core</AssemblyName>
+		<SignAssembly>true</SignAssembly>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AssemblyOriginatorKeyFile>DotNetCenter.Beyond.Mapping.snk</AssemblyOriginatorKeyFile>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/arsalanfallahpour/DotNetCenter.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+		<EnableNETAnalyzers>$(EnableNETAnalyzers)</EnableNETAnalyzers>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<Nullable>$(EnableNullable)</Nullable>
+	</PropertyGroup>
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1|netstandard2.0'">
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPackageVersion)" PrivateAssets="All" />
+		<!-- Compiler to support nullable in non-preview VS2019 -->
+		<PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="$(MicrosoftNetCompilersToolsetPackageVersion)" PrivateAssets="All" />
+	</ItemGroup>
+
+</Project>

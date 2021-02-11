@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Authors>Arsalan Fallahpour</Authors>
+		<Description>DotNetCenter.Beyond.Mapping Framework library</Description>
+		<Summary>DotNetCenter.Beyond.Mapping Framework library</Summary>
+		<Copyright>Copyright Arsalan Fallahpour</Copyright>
+		<NeutralLanguage>$(NeutralLanguage)</NeutralLanguage>
+		<Title>DotNetCenter</Title>
+		<PackageId>DotNetCenter.Beyond.Mapping</PackageId>
+		<Product>DotNetCenter</Product>
+		<TargetFrameworks>$(TargetNetFrameworkNames)</TargetFrameworks>
+		<PackageTags>dotnetcenterbyond;dcbyondautomaper;dcbyondautomaper;framework;</PackageTags>
+		<RuntimeIdentifiers>$(RuntimeIdentifierNames)</RuntimeIdentifiers>
+		<Version>$(ClasslibraryVersion)</Version>
+		<AssemblyVersion>$(AssemblyVersion)</AssemblyVersion>
+		<FileVersion>$(FileVersion)</FileVersion>
+		<LangVersion>$(LangVersion)</LangVersion>
+		<Features>strict</Features>
+		<Nullable>enable</Nullable>
+		<RootNamespace>DotNetCenter.Beyond.Mapping</RootNamespace>
+		<AssemblyName>DotNetCenter.Beyond.Mapping</AssemblyName>
+		<SignAssembly>true</SignAssembly>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AssemblyOriginatorKeyFile>DotNetCenter.Beyond.Mapping.snk</AssemblyOriginatorKeyFile>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/arsalanfallahpour/DotNetCenter.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+		<EnableNETAnalyzers>$(EnableNETAnalyzers)</EnableNETAnalyzers>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<Nullable>$(EnableNullable)</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|netcoreapp3.1|AnyCPU'">
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net5.0'">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1'">
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="DotNetCenter.DateTime" Version="0.1.0" />
+
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+
+		<PackageReference Include="DotNetCenter.Core.Entities" Version="0.1.5" />
+
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPackageVersion)" PrivateAssets="All" />
+		<!-- Compiler to support nullable in non-preview VS2019 -->
+		<PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="$(MicrosoftNetCompilersToolsetPackageVersion)" PrivateAssets="All" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Core\Source\DotNetCenter.Beyond.Mapping.Core.csproj" />
+	</ItemGroup>
+</Project>
+
