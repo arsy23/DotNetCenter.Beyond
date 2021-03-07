@@ -3,11 +3,11 @@
     using System;
     using System.Threading.Tasks;
     using DotNetCenter.Core.ErrorHandlers;
-    public interface IdentityService<TAppKey> 
-        where TAppKey : IEquatable<TAppKey>
+    public interface IdentityService<TKeyUser> 
+        where TKeyUser : IEquatable<TKeyUser>
     {
-        Task<string> GetUserNameAsync(TAppKey userId);
-        Task<(ResultContainer Result, TAppKey UserId)> CreateUserAsync(string userName, string password);
-        Task<ResultContainer> DeleteUserAsync(TAppKey userId);
+        Task<string> GetUserNameAsync(TKeyUser userId);
+        Task<(ResultContainer Result, TKeyUser UserId)> CreateUserAsync(string userName, string password);
+        Task<ResultContainer> DeleteUserAsync(TKeyUser userId);
     }
 }

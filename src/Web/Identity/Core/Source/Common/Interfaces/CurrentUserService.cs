@@ -1,10 +1,10 @@
 ﻿namespace DotNetCenter.Beyond.Web.Identity.Core
 {
     using System;
-    public interface CurrentUserService<TAppKey> 
-        where TAppKey : IEquatable<TAppKey>
+    public interface CurrentUserService<TKeyUser> 
+        where TKeyUser : IEquatable<TKeyUser>
     {
-        TAppKey UserId { get; }
+        TKeyUser UserId { get; }
         string UserName { get; }
         public bool IsUserAuthenticated { get; }
         bool TryGetUsername();
