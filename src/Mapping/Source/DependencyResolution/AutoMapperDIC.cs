@@ -1,7 +1,7 @@
 ﻿namespace DotNetCenter.Beyond.Mapping.DependencyResolution
 {
     using DotNetCenter.DateTime.DependencyResolution;
-    using global::AutoMapper;
+    using AutoMapper;
     using Microsoft.Extensions.DependencyInjection;
     using System.Collections.Generic;
     using System.Reflection;
@@ -24,7 +24,7 @@
             assemblies?.AddDotNetCenterDateTimeAssembly();
             assemblies?.Add(assembly);
             if (assemblies is not null)
-            services.AddAutoMapper(assemblies);
+                services.AddAutoMapper(assemblies);
             return services;
         }
         /// <summary>

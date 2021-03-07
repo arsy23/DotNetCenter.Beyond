@@ -51,7 +51,7 @@
         }
     }
 
-    internal class AudioDevice : Device
+    public class AudioDevice : Device
     {
         public AudioDevice()
         { }
@@ -62,7 +62,7 @@
         public int AudioRange { get; set; }
     }
 
-    internal class Device : IMapTo<AudioDevice>
+    public class Device : IMapTo<AudioDevice>
     {
         public Device()
         { }
@@ -73,7 +73,7 @@
         public string Name { get; set; }
 
     }
-    internal class MediaDevice : AudioDevice, IMapFrom<AudioDevice>
+    public class MediaDevice : AudioDevice, IMapFrom<AudioDevice>
     {
         public MediaDevice()
         { }
@@ -81,14 +81,14 @@
         { }
     }
 
-    internal class MappingTestProfile : BaseProfile
+    public class MappingTestProfile : BaseProfile
     {
         public MappingTestProfile() 
             : base(Assembly.GetExecutingAssembly())
         { }
     }
 
-    internal class Person : Human
+    public class Person : Human
     {
         public Person(string name, int? age, string nationalCode)
             :base (name, age)
@@ -100,7 +100,7 @@
         public string NationalCode { get; set; }
     }
 
-    internal class Human : IMapTo<Person>
+    public class Human : IMapTo<Person>
     {
         public Human(string name, int? age)
         {
@@ -111,7 +111,7 @@
         public int? Age { get; set; }
     }
 
-    internal class Emploee : Person, IMapFrom<Person>
+    public class Emploee : Person, IMapFrom<Person>
     {
         public Emploee(string name, int? age, string nationalCode, string emploeeId) 
             : base(name, age, nationalCode)

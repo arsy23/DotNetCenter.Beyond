@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>$(TargetNetFrameworkNames)</TargetFrameworks>
-		<ClassLibName>DotNetCenter.Beyond.Mapping</ClassLibName>
+		<ClassLibName>DotNetCenter.Beyond.Validation.ExceptionHandlers</ClassLibName>
 		<Authors>Arsalan Fallahpour</Authors>
 		<Description>$(ClassLibName) Framework library</Description>
 		<Summary>$(ClassLibName) Framework library</Summary>
@@ -43,33 +43,33 @@
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPackageVersion)" PrivateAssets="All" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)' == 'Debug|$(PrimaryTargetNetFrameworkNames)|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|$(PrimaryTargetNetFrameworkNames)|AnyCPU'">
 		<Optimize>true</Optimize>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)' == 'Debug|$(SecondaryTargetNetFrameworkNames)|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|$(SecondaryTargetNetFrameworkNames)|AnyCPU'">
 		<Optimize>true</Optimize>
 	</PropertyGroup>
 
 
 	<ItemGroup Condition=" ('$(TargetFramework)' == '$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)' == '$(SecondaryTargetNetFrameworkNames)')">
-		<PackageReference Include="AutoMapper" Version="$(AutoMapperPrimaryPackageVersion)" />
-		<PackageReference Include="DotNetCenter.DateTime" Version="$(DotNetCenterDateTimePrimaryPackageVersion)" />
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtMicDepInjPrimaryPackageVersion)" />
+			    <PackageReference Include="FluentValidation" Version="8.6.2" />
 	</ItemGroup>
 
 
-
-	<ItemGroup Condition="'$(TargetFramework)' == '$(PrimaryTargetNetFrameworkNames)'">
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCorePrimaryPackageVarsion)" />
+	<ItemGroup Condition="'$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)'">
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == '$(SecondaryTargetNetFrameworkNames)'">
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreSecondaryPackageVarsion)" />
+
+	<ItemGroup Condition="'$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)'">
+	</ItemGroup>
+	
+	<ItemGroup>
+
 	</ItemGroup>
 	
 
