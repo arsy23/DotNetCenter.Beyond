@@ -3,47 +3,55 @@
 	<PropertyGroup>
 		<TargetFrameworks>$(UnitTestProjectTargetFrameworkNames);</TargetFrameworks>
 		<IsPackable>false</IsPackable>
-		<Version>$(ClasslibraryVersion)</Version>
-		<AssemblyVersion>$(AssemblyVersion)</AssemblyVersion>
-		<FileVersion>$(FileVersion)</FileVersion>
-		<LangVersion>$(LangVersion)</LangVersion>
 		<Nullable>$(EnableNullable)</Nullable>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\..\..\..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\..\..\..\..\.editorconfig" Link=".editorconfig" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPackageVersion)" PrivateAssets="All" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="10.1.1" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageVersion)" />
-		<PackageReference Include="xunit" Version="$(XunitPackageVersion)" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioPackageVersion)">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="coverlet.collector" Version="$(CoverletCollectorPackageVersion)">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|$(PrimaryTargetNetFrameworkNames)|AnyCPU'">
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|$(SecondaryTargetNetFrameworkNames)|AnyCPU'">
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup Condition=" ('$(TargetFramework)' == '$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)' == '$(SecondaryTargetNetFrameworkNames)')">
+		<PackageReference Include="AutoMapper" Version="$(AutoMapperPrimaryPackageVersion)" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1'">
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-		<PackageReference Include="xunit" Version="2.4.0" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="coverlet.collector" Version="1.2.0" />
+	<ItemGroup Condition="'$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)'">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackagePrimaryVersion)" />
+		<PackageReference Include="xunit" Version="$(XunitPrimaryPackageVersion)" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioPrimaryPackageVersion)" />
+		<PackageReference Include="coverlet.collector" Version="$(CoverletCollectorPrimaryPackageVersion)" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicExtDepInjPrimaryPackageVarsion)" />
+
 	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)'">
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageSecondaryVersion)" />
+		<PackageReference Include="xunit" Version="$(XunitSecondaryPackageVersion)" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioSecondaryPackageVersion)" />
+		<PackageReference Include="coverlet.collector" Version="$(CoverletCollectorSecondaryPackageVersion)" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicExtDepInjSecondaryPackageVarsion)" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Source\DotNetCenter.Beyond.Mapping.csproj" />
 	</ItemGroup>
-
 </Project>
