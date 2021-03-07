@@ -1,0 +1,36 @@
+﻿namespace DotNetCenter.Beyond.Web.Core.Middlewares
+{
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    public static class DefaultRazorpagesMiddlewareExtension
+    {
+        public static IApplicationBuilder UseWeb(this IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logger)
+        {
+            app.UseStopWatchMiddleware(env, logger);
+
+            app.UseExceptionMiddleware(env);
+
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
+            app.UseSession();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapDefaultControllerRoute();
+            });
+
+            return app;
+        }
+    }
+}

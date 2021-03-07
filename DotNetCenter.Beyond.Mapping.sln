@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{B8376A76-813A-4AF2-843A-9020617DE267}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "src", "{B8376A76-813A-4AF2-843A-9020617DE267}"
 	ProjectSection(SolutionItems) = preProject
 		src\Directory.Build.props = src\Directory.Build.props
 	EndProjectSection
