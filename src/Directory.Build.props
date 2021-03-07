@@ -93,5 +93,10 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <EnableNETAnalyzers>true</EnableNETAnalyzers>
 	  <EnableNullable>enable</EnableNullable>
+ 
   </PropertyGroup>
+	
+	<PropertyGroup>
+		<GeneratedMSBuildEditorConfigFile>.\$(MSBuildProjectName).GeneratedMSBuildEditorConfig.editorconfig</GeneratedMSBuildEditorConfigFile>
+	</PropertyGroup>
 </Project>
