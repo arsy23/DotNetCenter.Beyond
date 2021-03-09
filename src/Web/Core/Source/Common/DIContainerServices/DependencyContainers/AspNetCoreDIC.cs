@@ -3,7 +3,6 @@
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services;
     using DotNetCenter.Beyond.Web.Core.Controllers;
-    using DotNetCenter.Beyond.Web.Identity.Core.Common.DIContainerServices.DependencyContainers;
     using Microsoft.Extensions.DependencyInjection;
     using System;
     using System.Collections.Generic;

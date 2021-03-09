@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Common.DIContainerServices.DependencyContainers
+﻿namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.DependencyContainers
 {
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services;
