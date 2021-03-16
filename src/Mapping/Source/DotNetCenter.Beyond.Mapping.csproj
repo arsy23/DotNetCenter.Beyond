@@ -44,16 +44,16 @@
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPackageVersion)" PrivateAssets="All" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)' == 'Debug|$(PrimaryTargetNetFrameworkNames)|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|$(PrimaryTargetNetFrameworkNames)|AnyCPU'">
 		<Optimize>true</Optimize>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)' == 'Debug|$(SecondaryTargetNetFrameworkNames)|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|$(SecondaryTargetNetFrameworkNames)|AnyCPU'">
 		<Optimize>true</Optimize>
 	</PropertyGroup>
 
@@ -65,13 +65,17 @@
 	</ItemGroup>
 
 
+	<ItemGroup Condition="'$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)'">
+	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCorePrimaryPackageVarsion)" />
+	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == '$(PrimaryTargetNetFrameworkNames)'">
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCorePrimaryPackageVarsion)" />
+	<ItemGroup Condition="'$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)'">
+	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreSecondaryPackageVarsion)" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == '$(SecondaryTargetNetFrameworkNames)'">
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreSecondaryPackageVarsion)" />
+
+	<ItemGroup>
+
 	</ItemGroup>
-	
+
 
 </Project>

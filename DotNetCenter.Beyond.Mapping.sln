@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "src", "{B8376A76-813A-4AF2-843A-9020617DE267}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{B8376A76-813A-4AF2-843A-9020617DE267}"
 	ProjectSection(SolutionItems) = preProject
 		src\Directory.Build.props = src\Directory.Build.props
 	EndProjectSection
@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCenter.Beyond.Mapping
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCenter.Beyond.Mapping.Core.UnitTest", "src\Mapping\Core\Tests\UnitTest\Source\DotNetCenter.Beyond.Mapping.Core.UnitTest.csproj", "{7AC38A10-CE7F-41AF-8FFB-76895D6CA2E7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCenter.Beyond.AutoMapper.UnitTest", "src\Mapping\Tests\UnitTest\Source\DotNetCenter.Beyond.AutoMapper.UnitTest.csproj", "{3CAA0C30-A8CD-4021-AA6F-5A49ACC4C36C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCenter.Beyond.Mapping.UnitTest", "src\Mapping\Tests\UnitTest\Source\DotNetCenter.Beyond.Mapping.UnitTest.csproj", "{3CAA0C30-A8CD-4021-AA6F-5A49ACC4C36C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCenter.Beyond.Mapping", "src\Mapping\Source\DotNetCenter.Beyond.Mapping.csproj", "{DE45DF4A-CDA8-4646-A437-CB3F4ECEC3E6}"
 EndProject

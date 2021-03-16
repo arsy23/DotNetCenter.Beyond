@@ -6,13 +6,12 @@
 		<Nullable>$(EnableNullable)</Nullable>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<None Include="..\..\..\..\..\.editorconfig" Link=".editorconfig" />
-	</ItemGroup>
-
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
+
+	<ItemGroup>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="$(MicrosoftSourceLinkGitHubPackageVersion)" PrivateAssets="All" />
@@ -22,6 +21,7 @@
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|$(PrimaryTargetNetFrameworkNames)|AnyCPU'">
 		<Optimize>true</Optimize>
 	</PropertyGroup>
@@ -30,16 +30,17 @@
 		<Optimize>true</Optimize>
 	</PropertyGroup>
 
-	<ItemGroup Condition=" ('$(TargetFramework)' == '$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)' == '$(SecondaryTargetNetFrameworkNames)')">
-		<PackageReference Include="AutoMapper" Version="$(AutoMapperPrimaryPackageVersion)" />
+
+	<ItemGroup Condition=" ('$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)')">
 	</ItemGroup>
+
+
 
 	<ItemGroup Condition="'$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)'">
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackagePrimaryVersion)" />
 		<PackageReference Include="xunit" Version="$(XunitPrimaryPackageVersion)" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioPrimaryPackageVersion)" />
 		<PackageReference Include="coverlet.collector" Version="$(CoverletCollectorPrimaryPackageVersion)" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicExtDepInjPrimaryPackageVarsion)" />
 
 	</ItemGroup>
 
@@ -48,10 +49,9 @@
 		<PackageReference Include="xunit" Version="$(XunitSecondaryPackageVersion)" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioSecondaryPackageVersion)" />
 		<PackageReference Include="coverlet.collector" Version="$(CoverletCollectorSecondaryPackageVersion)" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicExtDepInjSecondaryPackageVarsion)" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Source\DotNetCenter.Beyond.Mapping.csproj" />
 	</ItemGroup>
+
 </Project>
