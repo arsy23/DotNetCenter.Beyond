@@ -3,7 +3,8 @@
 	<PropertyGroup>
 		<TargetFrameworks>$(UnitTestProjectTargetFrameworkNames);</TargetFrameworks>
 		<IsPackable>false</IsPackable>
-		<Version>$(ClasslibraryVersion)</Version>
+		<BugfixVersion>1</BugfixVersion>
+		<Version>$(ClasslibraryVersion).$(BugfixVersion)</Version>
 		<AssemblyVersion>$(AssemblyVersion)</AssemblyVersion>
 		<FileVersion>$(FileVersion)</FileVersion>
 		<LangVersion>$(LangVersion)</LangVersion>
