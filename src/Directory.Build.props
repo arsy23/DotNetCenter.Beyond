@@ -75,7 +75,7 @@
 	  <MicExtAspMvcRazRunComPrimaryPackageVarsion>$(NetPrimaryVersion)</MicExtAspMvcRazRunComPrimaryPackageVarsion>
 
 
-	  <DotNetCenterDateTimePrimaryPackageVersion>0.2.1</DotNetCenterDateTimePrimaryPackageVersion>
+	  <DotNetCenterDateTimePrimaryPackageVersion>0.2.3</DotNetCenterDateTimePrimaryPackageVersion>
 	  <DotNetCenterCorePrimaryPackageVersion>0.2.1</DotNetCenterCorePrimaryPackageVersion>
 
 
