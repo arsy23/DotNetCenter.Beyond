@@ -32,9 +32,10 @@
 
 
 	<ItemGroup Condition=" ('$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)')">
+		<PackageReference Include="AutoMapper" Version="$(AutoMapperPrimaryPackageVersion)" />
+		<PackageReference Include="DotNetCenter.DateTime" Version="$(DotNetCenterDateTimePrimaryPackageVersion)" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtMicDepInjPrimaryPackageVersion)" />
 	</ItemGroup>
-
-
 
 	<ItemGroup Condition="'$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)'">
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackagePrimaryVersion)" />
@@ -53,6 +54,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Source\DotNetCenter.Beyond.Mapping.Core.csproj" />
+		<ProjectReference Include="..\..\..\..\Source\DotNetCenter.Beyond.Mapping.csproj" />
 	</ItemGroup>
 
 </Project>

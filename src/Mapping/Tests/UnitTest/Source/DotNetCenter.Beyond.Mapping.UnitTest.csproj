@@ -30,8 +30,10 @@
 		<Optimize>true</Optimize>
 	</PropertyGroup>
 
-
 	<ItemGroup Condition=" ('$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)')">
+		<PackageReference Include="AutoMapper" Version="$(AutoMapperPrimaryPackageVersion)" />
+		<PackageReference Include="DotNetCenter.DateTime" Version="$(DotNetCenterDateTimePrimaryPackageVersion)" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtMicDepInjPrimaryPackageVersion)" />
 	</ItemGroup>
 
 
@@ -50,6 +52,7 @@
 		<PackageReference Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioSecondaryPackageVersion)" />
 		<PackageReference Include="coverlet.collector" Version="$(CoverletCollectorSecondaryPackageVersion)" />
 	</ItemGroup>
+	
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Source\DotNetCenter.Beyond.Mapping.csproj" />
 	</ItemGroup>

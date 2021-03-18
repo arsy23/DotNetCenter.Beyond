@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Mapping.UnitTest
+﻿namespace DotNetCenter.Beyond.Mapping.Core.UnitTest
 {
     using DotNetCenter.Beyond.Mapping.DependencyResolution;
     using AutoMapper;

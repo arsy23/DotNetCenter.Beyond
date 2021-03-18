@@ -5,12 +5,22 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    public class BaseProfile : Profile
+    public class BaseProfile
+        : Profile
+
     {
+
+        public Type IMapTo => _iMapTo;
+        private readonly Type _iMapTo;
+        public Type IMapFrom => _iMapFrom; 
+        private readonly Type _iMapFrom;
         #region Constructors
-        public BaseProfile()
-        { }
-        public BaseProfile(Assembly executingAssembly) 
+        public BaseProfile(Type iMapTo, Type iMapFrom)
+        {
+            _iMapTo = iMapTo;
+            _iMapFrom = iMapFrom;
+        }
+        public BaseProfile(Assembly executingAssembly)
             => ApplyMappingsFromAssembly(executingAssembly);
         #endregion
         private void ApplyMappingsFromAssembly(Assembly assembly)
@@ -21,7 +31,7 @@
         #region Invoke Methods
         private bool InvokeIMapTo(Assembly assembly)
         {
-            var isAllInvoked  = true;
+            var isAllInvoked = true;
             var exportedTypes = GetIMapToExportedTypes(assembly);
             if (exportedTypes is null)
                 isAllInvoked = false;
@@ -50,7 +60,7 @@
                 return false;
             if (TryInvokeClassMethodImplementation(type, instance))
                 return true;
-            else 
+            else
                 isAllInvoked = TryInvokeInterfacMethodImplementation(GetMapFromInterfaces(type), instance);
 
             return isAllInvoked;
@@ -91,37 +101,37 @@
         }
         #endregion
         #region GetMap Interfaces
-        private static IEnumerable<Type> GetMapToInterfaces(Type type)
+        private IEnumerable<Type> GetMapToInterfaces(Type type)
             => type
             .GetInterfaces()
-            .Where(o => 
-            o.IsGenericType 
-            && o.GetGenericTypeDefinition() == typeof(IMapTo<>));
-        private static List<Type> GetMapFromInterfaces(Type type) 
+            .Where(o =>
+            o.IsGenericType
+            && o.GetGenericTypeDefinition().Equals(_iMapTo));
+        private List<Type> GetMapFromInterfaces(Type type)
             => type
             .GetInterfaces()
-            .Where(o => 
-            o.GetGenericTypeDefinition() == typeof(IMapFrom<>) 
+            .Where(o =>
+            o.GetGenericTypeDefinition() == _iMapFrom
             && o.IsGenericType)
             .ToList();
         #endregion
         #region GetMap ExportedTypes
-        private static List<Type> GetIMapFromExportedTypes(Assembly assembly) 
+        private List<Type> GetIMapFromExportedTypes(Assembly assembly)
             => assembly
             .GetExportedTypes()
-            .Where(t => 
+            .Where(t =>
             t.GetInterfaces()
-            .Any(i => 
-            i.IsGenericType 
-            && i.GetGenericTypeDefinition() == typeof(IMapFrom<>)))
+            .Any(i =>
+            i.IsGenericType
+            && i.GetGenericTypeDefinition() == _iMapFrom))
             .ToList();
-        private static List<Type> GetIMapToExportedTypes(Assembly assembly) 
+        private List<Type> GetIMapToExportedTypes(Assembly assembly)
             => assembly
             .GetExportedTypes()
-            .Where(t => 
+            .Where(t =>
             t.GetInterfaces()
-            .Any(i => i.IsGenericType 
-            && i.GetGenericTypeDefinition() == typeof(IMapTo<>)))
+            .Any(i => i.IsGenericType
+            && i.GetGenericTypeDefinition() == _iMapTo))
             .ToList();
         #endregion
     }
