@@ -11,18 +11,20 @@
     using System.Text;
     using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Identity.Core.Common.Models;
-    public abstract class BaseAppUserManager<TKeyUser>
-        : UserManager<AppUser<TKeyUser>> where TKeyUser : IEquatable<TKeyUser>
+    public abstract class BaseAppUserManager<TKeyUser, TAppUser>
+        : UserManager<TAppUser>
+        where TKeyUser : IEquatable<TKeyUser>
+        where TAppUser :  AppUser<TKeyUser>
     {
-        protected BaseAppUserManager(IUserStore<AppUser<TKeyUser>> store,
+        protected BaseAppUserManager(IUserStore<TAppUser> store,
                                              IOptions<IdentityOptions> optionsAccessor,
-                                             IPasswordHasher<AppUser<TKeyUser>> passwordHasher,
-                                             IEnumerable<IUserValidator<AppUser<TKeyUser>>> userValidators,
-                                             IEnumerable<IPasswordValidator<AppUser<TKeyUser>>> passwordValidators,
+                                             IPasswordHasher<TAppUser> passwordHasher,
+                                             IEnumerable<IUserValidator<TAppUser>> userValidators,
+                                             IEnumerable<IPasswordValidator<TAppUser>> passwordValidators,
                                              ILookupNormalizer keyNObjRelMappingalizer,
                                              IdentityErrorDescriber errors,
                                              IServiceProvider services,
-                                             ILogger<UserManager<AppUser<TKeyUser>>> logger) 
+                                             ILogger<UserManager<TAppUser>> logger) 
             : base(store,
                    optionsAccessor,
                    passwordHasher,
