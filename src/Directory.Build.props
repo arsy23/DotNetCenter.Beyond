@@ -18,7 +18,7 @@
 	  <LangVersion>latest</LangVersion>
 
 	  <RepositoryUrl>https://github.com/arsalanfallahpour/DotNetCenter.Beyond.git</RepositoryUrl>
-	  <ClasslibraryVersion>0.1.5</ClasslibraryVersion>
+	  <ClasslibraryVersion>0.1.8</ClasslibraryVersion>
 	  <FileVersion>0.1.1</FileVersion>
 	  <AssemblyVersion>0.1.1</AssemblyVersion>
 
@@ -92,7 +92,7 @@
 	  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <EnableNETAnalyzers>true</EnableNETAnalyzers>
-	  <EnableNullable>enable</EnableNullable>
+	  <EnableNullable>disable</EnableNullable>
  
   </PropertyGroup>
 	

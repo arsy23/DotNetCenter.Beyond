@@ -11,19 +11,18 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    public abstract class BaseAppSignInManager<TKeyUser, TAppUser>
-        : SignInManager<TAppUser>
+    public abstract class BaseAppSignInManager<TKeyUser>
+        : SignInManager<IAppUser>
         where TKeyUser : IEquatable<TKeyUser>
-        where TAppUser : AppUser<TKeyUser>
     {
         protected BaseAppSignInManager(
-            UserManager<TAppUser> userManager,
+            UserManager<IAppUser> userManager,
             IHttpContextAccessor contextAccessor,
-            IUserClaimsPrincipalFactory<TAppUser> claimsFactory,
+            IUserClaimsPrincipalFactory<IAppUser> claimsFactory,
             IOptions<IdentityOptions> optionsAccessor,
-            ILogger<SignInManager<TAppUser>> logger,
+            ILogger<SignInManager<IAppUser>> logger,
             IAuthenticationSchemeProvider schemes,
-            IUserConfirmation<TAppUser> confirmation) 
+            IUserConfirmation<IAppUser> confirmation) 
             : base(
                   userManager,
                   contextAccessor,

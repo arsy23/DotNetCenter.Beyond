@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Identity;
     using System;
 
-    public class AppUser<TKeyUser> : IdentityUser<TKeyUser>
+    public class AppUser<TKeyUser> : IdentityUser<TKeyUser>, IAppUser
         where TKeyUser : IEquatable<TKeyUser>
     {
         public AppUser()

@@ -58,7 +58,7 @@
         //    return ResultContainer.Success();
         //}
 
-        public async Task<ResultContainer> DeleteUserAsync(AppUser<TKeyUser> user)
+        public async Task<ResultContainer> DeleteUserAsync(IAppUser user)
         {
             var result = await _userManager.DeleteAsync(user);
 

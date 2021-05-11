@@ -11,20 +11,19 @@
     using System.Text;
     using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Identity.Core.Common.Models;
-    public abstract class BaseAppUserManager<TKeyUser, TAppUser>
-        : UserManager<TAppUser>
+    public abstract class BaseAppUserManager<TKeyUser>
+        : UserManager<IAppUser>
         where TKeyUser : IEquatable<TKeyUser>
-        where TAppUser :  AppUser<TKeyUser>
     {
-        protected BaseAppUserManager(IUserStore<TAppUser> store,
+        protected BaseAppUserManager(IUserStore<IAppUser> store,
                                              IOptions<IdentityOptions> optionsAccessor,
-                                             IPasswordHasher<TAppUser> passwordHasher,
-                                             IEnumerable<IUserValidator<TAppUser>> userValidators,
-                                             IEnumerable<IPasswordValidator<TAppUser>> passwordValidators,
+                                             IPasswordHasher<IAppUser> passwordHasher,
+                                             IEnumerable<IUserValidator<IAppUser>> userValidators,
+                                             IEnumerable<IPasswordValidator<IAppUser>> passwordValidators,
                                              ILookupNormalizer keyNObjRelMappingalizer,
                                              IdentityErrorDescriber errors,
                                              IServiceProvider services,
-                                             ILogger<UserManager<TAppUser>> logger) 
+                                             ILogger<UserManager<IAppUser>> logger) 
             : base(store,
                    optionsAccessor,
                    passwordHasher,
@@ -35,6 +34,10 @@
                    services,
                    logger)
         {
+        }
+        public override Task<IdentityResult> CreateAsync(IAppUser user)
+        {
+            return base.CreateAsync(user);
         }
     }
 }
