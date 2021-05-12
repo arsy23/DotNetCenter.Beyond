@@ -8,23 +8,21 @@
     using DotNetCenter.Core.ErrorHandlers;
     using DotNetCenter.Beyond.Web.Identity.Infrastructure.SqlServer;
     using DotNetCenter.Beyond.Web.Identity.Core.Common.Managers;
-    using DotNetCenter.Beyond.Web.Identity.Core.Common.Models;
-    using DotNetCenter.Beyond.Web.Identity.Core.Common.Extensions;
+    using DotNetCenter.Beyond.Web.Identity.Core.Models;
+    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
 
-    public abstract  class BaseIdentityService<TKeyUser> 
-        : IdentityService<TKeyUser> 
-        where TKeyUser :  IEquatable<TKeyUser> 
+    public abstract  class BaseIdentityService : IdentityService
     {
 
-        protected readonly BaseAppUserManager<TKeyUser> _userManager;
-        protected readonly CurrentUserService<TKeyUser> _currentUserService;
-        public BaseIdentityService(BaseAppUserManager<TKeyUser> userManager, CurrentUserService<TKeyUser> currentUserService)
+        protected readonly BaseAppUserManager _userManager;
+        protected readonly CurrentUserService _currentUserService;
+        public BaseIdentityService(BaseAppUserManager userManager, CurrentUserService currentUserService)
         {
             _userManager = userManager;
             _currentUserService = currentUserService;
         }
 
-        public abstract Task<string> GetUserNameAsync(TKeyUser userId);
+        public abstract Task<string> GetUserNameAsync(Guid userId);
         //{
         //    if (!_currentUserService.IsUserAuthenticated)
         //        return "";
@@ -33,9 +31,9 @@
 
         //    return user.UserName;
         //}
-        public async Task<(ResultContainer Result, TKeyUser UserId)> CreateUserAsync(string userName, string password)
+        public async Task<(ResultContainer Result, Guid UserId)> CreateUserAsync(string userName, string password)
         {
-            var user = new AppUser<TKeyUser> { 
+            var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow) { 
                 UserName = userName,
                 Email = userName,
             };
@@ -65,6 +63,6 @@
             return result.ToApplicationResult();
         }
 
-        public abstract Task<ResultContainer> DeleteUserAsync(TKeyUser userId);
+        public abstract Task<ResultContainer> DeleteUserAsync(Guid userId);
     }
 }

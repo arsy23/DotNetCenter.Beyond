@@ -1,15 +1,10 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Common.Models
+﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Models
 {
-    using DotNetCenter.Core;
     using Microsoft.AspNetCore.Identity;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    public class AppUserToken<TKeyUser> 
-        : IdentityUserToken<TKeyUser> 
-        where TKeyUser : IEquatable<TKeyUser>
+    public class AppUserToken
+        : IdentityUserToken<Guid>
+        , IAppUserToken
     {
     }
 }

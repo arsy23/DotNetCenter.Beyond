@@ -1,4 +1,4 @@
-namespace DotNetCenter.Beyond.Web.Identity.Core
+namespace DotNetCenter.Beyond.Web.Identity.Core.DbContextServices
 {
     using DotNetCenter.Beyond.ObjRelMapping.Core.Auditing;
     using DotNetCenter.Beyond.ObjRelMapping.Core.DbContext;

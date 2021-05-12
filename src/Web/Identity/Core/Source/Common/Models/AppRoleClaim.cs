@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Common.Models
+﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Models
 {
     using Microsoft.AspNetCore.Identity;
     using System;
@@ -6,8 +6,9 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    public class AppRoleClaim<TKeyRole>
-        : IdentityRoleClaim<TKeyRole> where TKeyRole : IEquatable<TKeyRole>
+    public class AppRoleClaim
+        : IdentityRoleClaim<Guid>
+        , IAppRoleClaim
     {
     }
 }

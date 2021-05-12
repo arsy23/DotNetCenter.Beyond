@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Common.Extensions
+﻿namespace DotNetCenter.Beyond.Web.Identity.Core
 {
     using System.Linq;
     using DotNetCenter.Core.ErrorHandlers;

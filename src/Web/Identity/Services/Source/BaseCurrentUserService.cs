@@ -3,14 +3,16 @@
     using System;
     using System.Security.Claims;
     using DotNetCenter.Beyond.Web.Identity.Core;
+    using DotNetCenter.Beyond.Web.Identity.Core.Models;
     using Microsoft.AspNetCore.Http;
 
-    public abstract  class BaseCurrentUserService<TKeyUser> 
-        : CurrentUserService<TKeyUser> 
-        where TKeyUser : IEquatable<TKeyUser>
+    public abstract class BaseCurrentUserService
+        : CurrentUserService
     {
-        public BaseCurrentUserService(IHttpContextAccessor httpContextAccessor) => HttpContextAccessor = httpContextAccessor;
-        public bool TryGetUsername()
+        public BaseCurrentUserService(IHttpContextAccessor httpContextAccessor)
+            => HttpContextAccessor = httpContextAccessor;
+        public abstract IAppUser TryGetUser(out IAppUser user);
+        protected bool TrySetUsername()
         {
             var userName = HttpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Name);
             if (string.IsNullOrEmpty(userName) || string.IsNullOrWhiteSpace(userName))
@@ -19,7 +21,7 @@
             return true;
         }
 
-        public bool TryGetUserId()
+        protected bool TrySetUserId()
         {
             var id = HttpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
             var isParsed = Guid.TryParse(id, out var userId);
@@ -35,11 +37,12 @@
             }
         }
 
-        public Guid UserId { get; private set; }
-        public string UserName { get; private set; }
+        public abstract bool TrySetUser();
+
+        public Guid UserId { get; protected set; }
+        public string UserName { get; protected set; }
         public bool IsUserAuthenticated { get => HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated;}
         public IHttpContextAccessor HttpContextAccessor { get; }
-
-        TKeyUser CurrentUserService<TKeyUser>.UserId { get; }
+      
     }
 }

@@ -10,10 +10,11 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using DotNetCenter.Beyond.Web.Identity.Core.Common.Models;
-    public abstract class BaseAppUserManager<TKeyUser>
-        : UserManager<IAppUser>
-        where TKeyUser : IEquatable<TKeyUser>
+    using DotNetCenter.Beyond.Web.Identity.Core.Models;
+    using DotNetCenter.Beyond.Web.Identity.Core;
+
+    public abstract class BaseAppUserManager
+        : UserManager<IAppUser>, UserManagerService
     {
         protected BaseAppUserManager(IUserStore<IAppUser> store,
                                              IOptions<IdentityOptions> optionsAccessor,
@@ -23,7 +24,7 @@
                                              ILookupNormalizer keyNObjRelMappingalizer,
                                              IdentityErrorDescriber errors,
                                              IServiceProvider services,
-                                             ILogger<UserManager<IAppUser>> logger) 
+                                             ILogger<BaseAppUserManager> logger) 
             : base(store,
                    optionsAccessor,
                    passwordHasher,

@@ -6,14 +6,13 @@
     using System;
     using DotNetCenter.Core.Entities;
     using DotNetCenter.Beyond.ObjRelMapping.Core.DbContext;
+    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
 
     public static class AuditorDependencyInjection
     {
-        public static IServiceCollection AddAuditor<TKeyEntity, TKeyUser>(this IServiceCollection services)
-            where TKeyUser : struct, IEquatable<TKeyUser>
-            where TKeyEntity : struct, IEquatable<TKeyEntity>
+        public static IServiceCollection AddAuditor(this IServiceCollection services)
         {
-            services.AddTransient<Auditable, Auditor<TKeyEntity, TKeyUser>>();
+            services.AddTransient<Auditable, Auditor>();
             return services;
         }
     }

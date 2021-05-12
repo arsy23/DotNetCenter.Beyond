@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Common.DbContextServices
+﻿namespace DotNetCenter.Beyond.Web.Identity.Core.DbContextServices
 {
     using Microsoft.EntityFrameworkCore.ChangeTracking;
     using DotNetCenter.DateTime.Common;
@@ -7,13 +7,11 @@
     using DotNetCenter.Core.Entities;
     using System;
     
-    public class Auditor<TKeyEntity, TKeyUser> : Auditable
-        where TKeyUser : struct, IEquatable<TKeyUser>
-        where TKeyEntity : struct, IEquatable<TKeyEntity>
+    public class Auditor : Auditable
     {
-        private readonly CurrentUserService<TKeyUser> _currentUserService;
+        private readonly CurrentUserService _currentUserService;
         private readonly CompoundableDateTimeNow _dateTime;
-        public Auditor(CurrentUserService<TKeyUser> currentUserService, CompoundableDateTimeNow dateTime)
+        public Auditor(CurrentUserService currentUserService, CompoundableDateTimeNow dateTime)
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
@@ -24,7 +22,7 @@
         /// <param name="changeTracker"></param>
         public void UpdateModifiedAll(ChangeTracker changeTracker)
         {
-            foreach (var entry in changeTracker.Entries<AuditableEntity<TKeyEntity, TKeyUser>>())
+            foreach (var entry in changeTracker.Entries<AuditableEntity<Guid, Guid>>())
                 switch (entry.State)
                 {
                     //case EntityState.Added:

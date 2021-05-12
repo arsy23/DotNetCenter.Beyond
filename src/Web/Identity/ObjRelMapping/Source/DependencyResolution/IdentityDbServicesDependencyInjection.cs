@@ -8,16 +8,16 @@
     using System.Text;
     using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Identity.Core.DependencyResolution;
+    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
+
     public static class IdentityDbServicesDependencyInjection
     {
-       public static IServiceCollection AddIdentityDbServices<TServiceDbContext, TImplementationDbContext, TKeyEntity, TKeyUser>(this IServiceCollection services)
-          where TKeyEntity : struct, IEquatable<TKeyEntity>
-          where TKeyUser : struct, IEquatable<TKeyUser>
+       public static IServiceCollection AddIdentityDbServices<TServiceDbContext, TImplementationDbContext>(this IServiceCollection services)
           where TServiceDbContext : IdentityDbService
           where TImplementationDbContext : class, IdentityDbService
         {
             services.AddTransient<IdentityDbService, TImplementationDbContext>();
-            services.AddAuditor<TKeyEntity, TKeyUser>();
+            services.AddAuditor();
             return services;
         }
     }

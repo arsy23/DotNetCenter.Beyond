@@ -1,6 +1,7 @@
 ﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Common.Managers
 {
-    using DotNetCenter.Beyond.Web.Identity.Core.Common.Models;
+    using DotNetCenter.Beyond.Web.Identity.Core;
+    using DotNetCenter.Beyond.Web.Identity.Core.Models;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
@@ -11,16 +12,15 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    public abstract class BaseAppSignInManager<TKeyUser>
-        : SignInManager<IAppUser>
-        where TKeyUser : IEquatable<TKeyUser>
+    public abstract class BaseAppSignInManager
+        : SignInManager<IAppUser>, SignInManagerService<IAppUser>
     {
         protected BaseAppSignInManager(
             UserManager<IAppUser> userManager,
             IHttpContextAccessor contextAccessor,
             IUserClaimsPrincipalFactory<IAppUser> claimsFactory,
             IOptions<IdentityOptions> optionsAccessor,
-            ILogger<SignInManager<IAppUser>> logger,
+            ILogger<BaseAppSignInManager> logger,
             IAuthenticationSchemeProvider schemes,
             IUserConfirmation<IAppUser> confirmation) 
             : base(

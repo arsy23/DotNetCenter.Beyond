@@ -10,20 +10,21 @@
     using DotNetCenter.Beyond.Web.Identity.Core;
     using Microsoft.IdentityModel.JsonWebTokens;
     using DotNetCenter.Core.ExceptionHandlers;
+    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
+    using DotNetCenter.Beyond.Web.Identity.Core.Models;
 
-    public abstract  class UserAuthenticationService<TKeyUser> : UserAuthenticable
-        where TKeyUser : IEquatable<TKeyUser>
+    public abstract  class UserAuthenticationService : UserAuthenticable
     {
         private readonly IdentityDbService _context;
-        private readonly CurrentUserService<TKeyUser> _currentUserService;
+        private readonly CurrentUserService _currentUserService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public BaseIdentityService<TKeyUser> IdentityService { get; set; }
+        public BaseIdentityService IdentityService { get; set; }
         public UserAuthenticationService(
             IdentityDbService context,
-            BaseIdentityService<TKeyUser> identityService,
-            CurrentUserService<TKeyUser> currentUserService,
+            BaseIdentityService identityService,
+            CurrentUserService currentUserService,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager)
         {
@@ -40,14 +41,9 @@
             string jwtIssuer,
             double expirationFromNow)
         {
-           var gettinUserIdSucceded =  _currentUserService.TryGetUserId();
-           var gettinUsernameSucceded = _currentUserService.TryGetUsername();
 
-            if (!gettinUserIdSucceded)
+            if (!_currentUserService.TrySetUser())
                 throw new NotFoundException("IdentityUser UserId not found!");
-
-            else if (!gettinUsernameSucceded)
-                throw new NotFoundException("IdentityUser Username not found");
 
         var claims = new List<Claim>
         {
