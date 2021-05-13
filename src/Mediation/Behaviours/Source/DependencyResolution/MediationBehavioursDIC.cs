@@ -7,7 +7,7 @@
     { 
         public static IServiceCollection AddRequestBehaviours(this IServiceCollection services)
         {
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerfObjRelMappinganceBehaviour<,,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerfObjRelMappinganceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             return services;
         }

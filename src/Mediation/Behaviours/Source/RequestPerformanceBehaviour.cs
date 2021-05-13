@@ -7,20 +7,20 @@
     using DotNetCenter.Beyond.Web.Identity.Core;
     using MediatR;
     using System;
+    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
 
-    public class RequestPerfObjRelMappinganceBehaviour<TRequest, TResponse, TAppKey> 
+    public class RequestPerfObjRelMappinganceBehaviour<TRequest, TResponse> 
         : IPipelineBehavior<TRequest, TResponse>
-        where TAppKey : IEquatable<TAppKey>
     {
         private readonly Stopwatch _timer;
         private readonly ILogger<TRequest> _logger;
-        private readonly CurrentUserService<TAppKey> _currentUserService;
-        private readonly IdentityService<TAppKey> _identityService;
+        private readonly CurrentUserService _currentUserService;
+        private readonly IdentityService _identityService;
 
         public RequestPerfObjRelMappinganceBehaviour(
             ILogger<TRequest> logger,
-            CurrentUserService<TAppKey> currentUserService,
-            IdentityService<TAppKey> identityService)
+            CurrentUserService currentUserService,
+            IdentityService identityService)
         {
             _timer = new Stopwatch();
             _logger = logger;
@@ -50,7 +50,7 @@
         {
             var logMessage = "Application Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId}";
             var requestName = typeof(TRequest).Name;
-            if (_currentUserService.TryGetUsername() && _currentUserService.TryGetUserId())
+            if (_currentUserService.TrySetUserId())
                 await LogCriticalWithUserName(request, _timer.ElapsedMilliseconds, logMessage, requestName);
             else
                 _logger.LogCritical(logMessage + "{@Request}", requestName, _timer.ElapsedMilliseconds, request);

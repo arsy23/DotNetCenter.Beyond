@@ -80,5 +80,6 @@
 	<ItemGroup>
     <ProjectReference Include="..\..\Core\Source\DotNetCenter.Beyond.Web.Identity.Core.csproj" />
     <ProjectReference Include="..\..\Infrastructure\SqlServer\Source\DotNetCenter.Beyond.Web.Identity.Infrastructure.SqlServer.csproj" />
+    <ProjectReference Include="..\..\ObjRelMapping\Source\DotNetCenter.Beyond.Web.Identity.ObjRelMapping.csproj" />
 	</ItemGroup>
 </Project>

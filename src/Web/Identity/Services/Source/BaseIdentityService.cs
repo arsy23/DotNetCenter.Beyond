@@ -1,17 +1,14 @@
 ﻿namespace DotNetCenter.Beyond.Web.Identity.Services
 {
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Identity.Core;
-    using DotNetCenter.Core.ErrorHandlers;
-    using DotNetCenter.Beyond.Web.Identity.Infrastructure.SqlServer;
     using DotNetCenter.Beyond.Web.Identity.Core.Common.Managers;
     using DotNetCenter.Beyond.Web.Identity.Core.Models;
-    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices;
+    using DotNetCenter.Core.ErrorHandlers;
+    using System;
+    using System.Threading.Tasks;
 
-    public abstract  class BaseIdentityService : IdentityService
+    public abstract class BaseIdentityService : IdentityService
     {
 
         protected readonly BaseAppUserManager _userManager;
@@ -33,7 +30,8 @@
         //}
         public async Task<(ResultContainer Result, Guid UserId)> CreateUserAsync(string userName, string password)
         {
-            var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow) { 
+            var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow)
+            {
                 UserName = userName,
                 Email = userName,
             };

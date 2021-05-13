@@ -4,7 +4,8 @@
     using System;
     public interface CurrentUserService
     {
-        bool TrySetUser();
+        bool TrySetUsername();
+        bool TrySetUserId();
         Guid UserId { get; }
         string UserName { get; }
         public bool IsUserAuthenticated { get; }

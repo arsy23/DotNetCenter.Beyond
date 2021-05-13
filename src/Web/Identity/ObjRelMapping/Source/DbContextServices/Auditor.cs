@@ -1,12 +1,13 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.Core.DbContextServices
+﻿namespace DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices
 {
-    using Microsoft.EntityFrameworkCore.ChangeTracking;
+    using DotNetCenter.Beyond.ObjRelMapping.Core.Auditing;
+    using DotNetCenter.Beyond.Web.Identity.Core;
+    using DotNetCenter.Core.Entities;
     using DotNetCenter.DateTime.Common;
     using Microsoft.EntityFrameworkCore;
-    using DotNetCenter.Beyond.ObjRelMapping.Core.Auditing;
-    using DotNetCenter.Core.Entities;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
     using System;
-    
+
     public class Auditor : Auditable
     {
         private readonly CurrentUserService _currentUserService;
@@ -27,11 +28,11 @@
                 {
                     //case EntityState.Added:
                     //        entry.Entity.EntityCreated(_currentUserService.UserId, _dateTime.DateTimeNow);
-                            //break;
+                    //break;
                     case EntityState.Modified:
-                            entry.Entity.RegisterModifiedInformation(_currentUserService.UserId, _dateTime.DateTimeNow);
-                            break;
+                        entry.Entity.RegisterModifiedInformation(_currentUserService.UserId, _dateTime.DateTimeNow);
+                        break;
                 }
-            }
+        }
     }
 }
