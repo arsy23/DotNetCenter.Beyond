@@ -7,18 +7,18 @@ namespace DotNetCenter.Beyond.Mediation.Behaviours
     using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Identity.Core;
     using System;
+    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
 
-    public class RequestLogger<TRequest, TAppKey> : IRequestPreProcessor<TRequest>
-        where TAppKey : IEquatable<TAppKey>
+    public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
         private readonly ILogger _logger;
-        private readonly CurrentUserService<TAppKey> _currentUserService;
-        private readonly IdentityService<TAppKey> _identityService;
+        private readonly CurrentUserService _currentUserService;
+        private readonly IdentityService _identityService;
 
         public RequestLogger(
             ILogger<TRequest> logger,
-            CurrentUserService<TAppKey> currentUserService,
-            IdentityService<TAppKey> identityService)
+            CurrentUserService currentUserService,
+            IdentityService identityService)
         {
             _logger = logger;
             _currentUserService = currentUserService;

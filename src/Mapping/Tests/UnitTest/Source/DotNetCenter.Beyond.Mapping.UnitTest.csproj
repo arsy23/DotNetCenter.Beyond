@@ -30,7 +30,7 @@
 		<Optimize>true</Optimize>
 	</PropertyGroup>
 
-	<ItemGroup Condition=" ('$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)')">
+	<ItemGroup Condition="('$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)')">
 		<PackageReference Include="AutoMapper" Version="$(AutoMapperPrimaryPackageVersion)" />
 		<PackageReference Include="DotNetCenter.DateTime" Version="$(DotNetCenterDateTimePrimaryPackageVersion)" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtMicDepInjPrimaryPackageVersion)" />

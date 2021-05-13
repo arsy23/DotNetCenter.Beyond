@@ -78,10 +78,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="../../../../ObjRelMapping/Core/Source/DotNetCenter.Beyond.ObjRelMapping.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Common\Interfaces\" />
+	  <Folder Include="DependencyResolution\" />
 	</ItemGroup>
 </Project>
