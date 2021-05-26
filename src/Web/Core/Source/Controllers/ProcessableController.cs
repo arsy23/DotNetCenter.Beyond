@@ -1,4 +1,4 @@
-﻿using DotNetCenter.Beyond.Web.Core.Common.Interfaces;
+﻿using DotNetCenter.Beyond.Web.Core.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

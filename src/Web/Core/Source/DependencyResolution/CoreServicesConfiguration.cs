@@ -18,10 +18,12 @@
             services.ConfigureRouteLowercaseUrls(lowercaseUrls);
 
             var environment = services.BuildServiceProvider().GetRequiredService<IHostEnvironment>();
-            if (environment.IsDevelopment());
+            if (environment.IsDevelopment())
+            {
 #if NET5_0
                 services.AddDatabaseDeveloperPageExceptionFilter();
 #endif 
+            }
             return services;
         }
     }
