@@ -8,7 +8,6 @@
                                                      IMvcBuilder mvcBuilder,
                                                      bool lowercaseUrls)
         {
-            services.AddCoreServices(lowercaseUrls);
             services.ConfigureDomainExceptionFilterService();
             services.AddSingleton(mvcBuilder);
             return mvcBuilder;

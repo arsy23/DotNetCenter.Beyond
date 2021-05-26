@@ -9,7 +9,6 @@
     {
         public static IServiceCollection AddWebApiServices(this IServiceCollection services, Action<MvcOptions> options, bool lowercaseUrls)
         {
-            services.AddCoreServices(lowercaseUrls);
             var mvcBuilder = services.AddControllers(options);
             services.AddSingleton(mvcBuilder);
             return services;
