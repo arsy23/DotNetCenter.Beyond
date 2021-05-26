@@ -1,7 +1,7 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces
 {
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services;
-    using DotNetCenter.Beyond.Web.Core.Common.Interfaces;
+    using DotNetCenter.Beyond.Web.Core.Common;
     using DotNetCenter.Beyond.Web.Core.Controllers;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.RazorPages;

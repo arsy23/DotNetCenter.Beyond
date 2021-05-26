@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Web.Core.Common.Interfaces
+﻿namespace DotNetCenter.Beyond.Web.Core.Common
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

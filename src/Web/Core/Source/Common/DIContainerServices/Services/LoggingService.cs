@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using DotNetCenter.Beyond.Web.Core.Controllers;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DotNetCenter.Beyond.Web.Core.Common.Interfaces;
+using DotNetCenter.Beyond.Web.Core.Common;
 namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services
 {
     public class LoggingService<TController>

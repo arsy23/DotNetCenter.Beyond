@@ -7,7 +7,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
-    using DotNetCenter.Beyond.Web.Core.Common.Interfaces;
+    using DotNetCenter.Beyond.Web.Core.Common;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
