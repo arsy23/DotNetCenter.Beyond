@@ -59,6 +59,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|$(SecondaryTargetNetFrameworkNames)|AnyCPU'">
 		<Optimize>true</Optimize>
+
 	</PropertyGroup>
 
 

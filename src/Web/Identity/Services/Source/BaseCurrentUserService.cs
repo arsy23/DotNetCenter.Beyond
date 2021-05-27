@@ -3,6 +3,7 @@
     using System;
     using System.Security.Claims;
     using DotNetCenter.Beyond.Web.Identity.Core;
+    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
     using DotNetCenter.Beyond.Web.Identity.Core.Models;
     using Microsoft.AspNetCore.Http;
 
@@ -18,7 +19,7 @@
             if (string.IsNullOrEmpty(userName) || string.IsNullOrWhiteSpace(userName))
                 return false;
 
-            UserName = userName;
+            Username = userName;
             return true;
         }
         public bool TrySetUserId()
@@ -33,7 +34,7 @@
             return true;
         }
         public Guid UserId { get; protected set; }
-        public string UserName { get; protected set; }
+        public string Username { get; protected set; }
         public bool IsUserAuthenticated { get => HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated;}
         public IHttpContextAccessor HttpContextAccessor { get; }
       

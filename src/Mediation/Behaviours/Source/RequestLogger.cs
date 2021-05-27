@@ -7,7 +7,7 @@ namespace DotNetCenter.Beyond.Mediation.Behaviours
     using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Identity.Core;
     using System;
-    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices;
 
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {

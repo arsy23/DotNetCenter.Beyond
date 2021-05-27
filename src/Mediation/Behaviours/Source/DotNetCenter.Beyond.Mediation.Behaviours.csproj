@@ -72,6 +72,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Validation\ExceptionHandlers\Source\DotNetCenter.Beyond.Validation.ExceptionHandlers.csproj" />
 		<ProjectReference Include="..\..\..\ObjRelMapping\Core\Source\DotNetCenter.Beyond.ObjRelMapping.Core.csproj" />
+		<ProjectReference Include="..\..\..\Web\Identity\ObjRelMapping\Source\DotNetCenter.Beyond.Web.Identity.ObjRelMapping.csproj" />
 		<ProjectReference Include="..\..\..\Web\Identity\Core\Source\DotNetCenter.Beyond.Web.Identity.Core.csproj" />
 	</ItemGroup>
 	

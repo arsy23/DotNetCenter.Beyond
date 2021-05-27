@@ -18,6 +18,7 @@ namespace DotNetCenter.Beyond.Web.Identity.Core.Models
         public string DisplayName { get; }
         public string AccountType { get; }
         public System.DateTime DateRegistered { get; }
-        public IdentityUser GetIdentityUser();
+        public bool TrySetIdentityUser();
+        public bool ValidateIdentityUser();
     }
 }

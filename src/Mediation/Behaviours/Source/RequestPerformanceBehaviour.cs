@@ -7,8 +7,7 @@
     using DotNetCenter.Beyond.Web.Identity.Core;
     using MediatR;
     using System;
-    using DotNetCenter.Beyond.Web.Identity.Core.DbContextServices;
-
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices;
     public class RequestPerfObjRelMappinganceBehaviour<TRequest, TResponse> 
         : IPipelineBehavior<TRequest, TResponse>
     {
@@ -59,8 +58,8 @@
         private async Task LogCriticalWithUserName(TRequest request, long elapsedMilliseconds, string logMessage, string requestName)
         {
             var userId = _currentUserService.UserId;
-            var userName = await _identityService.GetUserNameAsync(userId);
-            _logger.LogCritical(logMessage + "{@UserName} {@Request}", requestName, elapsedMilliseconds, userId, userName, request);
+            if (_currentUserService.TrySetUsername())
+                _logger.LogCritical(logMessage + "{@UserName} {@Request}", requestName, elapsedMilliseconds, userId, _currentUserService.Username, request);
         }
     }
 }

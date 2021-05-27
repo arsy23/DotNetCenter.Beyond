@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Common.Managers
+﻿namespace DotNetCenter.Beyond.Web.Identity.Services.Managers
 {
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Http;
@@ -12,6 +12,8 @@
     using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Identity.Core.Models;
     using DotNetCenter.Beyond.Web.Identity.Core;
+    using DotNetCenter.Core.ErrorHandlers;
+    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
 
     public abstract class BaseAppUserManager
         : UserManager<IAppUser>, UserManagerService
@@ -36,9 +38,10 @@
                    logger)
         {
         }
-        public override Task<IdentityResult> CreateAsync(IAppUser user)
+        public new async Task<ResultContainer> CreateAsync(IAppUser user)
         {
-            return base.CreateAsync(user);
+           var idResult = await base.CreateAsync(user);
+            return idResult.ToApplicationResult();
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Common.Managers
+﻿namespace DotNetCenter.Beyond.Web.Identity.Services.Managers
 {
-    using DotNetCenter.Beyond.Web.Identity.Core;
+    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
     using DotNetCenter.Beyond.Web.Identity.Core.Models;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Http;
@@ -13,7 +13,7 @@
     using System.Text;
     using System.Threading.Tasks;
     public abstract class BaseAppSignInManager
-        : SignInManager<IAppUser>, SignInManagerService<IAppUser>
+        : SignInManager<IAppUser>, SignInManagerService
     {
         protected BaseAppSignInManager(
             UserManager<IAppUser> userManager,

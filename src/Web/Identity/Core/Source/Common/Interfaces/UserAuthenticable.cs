@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-namespace DotNetCenter.Beyond.Web.Identity.Services
+namespace DotNetCenter.Beyond.Web.Identity.Core
 {
     public interface UserAuthenticable
     {

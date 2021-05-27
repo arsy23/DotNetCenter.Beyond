@@ -1,66 +1,72 @@
 ﻿namespace DotNetCenter.Beyond.Web.Identity.Services
 {
     using DotNetCenter.Beyond.Web.Identity.Core;
-    using DotNetCenter.Beyond.Web.Identity.Core.Common.Managers;
+    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
     using DotNetCenter.Beyond.Web.Identity.Core.Models;
-    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices;
     using DotNetCenter.Core.ErrorHandlers;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Threading.Tasks;
 
     public abstract class BaseIdentityService : IdentityService
     {
 
-        protected readonly BaseAppUserManager _userManager;
+        protected readonly UserManagerService _userManager;
         protected readonly CurrentUserService _currentUserService;
-        public BaseIdentityService(BaseAppUserManager userManager, CurrentUserService currentUserService)
+        public BaseIdentityService(UserManagerService userManager,
+            CurrentUserService currentUserService)
         {
             _userManager = userManager;
             _currentUserService = currentUserService;
         }
 
-        public abstract Task<string> GetUserNameAsync(Guid userId);
-        //{
-        //    if (!_currentUserService.IsUserAuthenticated)
-        //        return "";
-
-        //    var user = await _userManager.Users.FirstOrDefaultAsync(o => o.Id == userId);
-
-        //    return user.UserName;
-        //}
-        public async Task<(ResultContainer Result, Guid UserId)> CreateUserAsync(string userName, string password)
+        public virtual async Task<string> GetUserNameAsync(Guid userId)
         {
-            var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow)
-            {
-                UserName = userName,
-                Email = userName,
-            };
+            if (!_currentUserService.IsUserAuthenticated)
+                return "";
 
-            var result = await _userManager.CreateAsync(user, password);
+            var user = await _userManager.Users.FirstOrDefaultAsync(o => o.Id == userId);
 
-            //return (result.ToApplicationResult(), user.Id);
-            return (result.ToApplicationResult(), user.Id);
+            return user.Username;
         }
-
-        //public abstract Task<Result> DeleteUserAsync(Guid userId);
-        //{
-        //    var user = await _userManager.Users.FirstOrDefaultAsync(o => o.Id == userId);
-
-        //    if (user != null)
-        //    {
-        //        return await DeleteUserAsync(user);
-        //    }
-
-        //    return ResultContainer.Success();
-        //}
-
-        public async Task<ResultContainer> DeleteUserAsync(IAppUser user)
+        public virtual async Task<ResultContainer> DeleteUserAsync(IAppUser user)
         {
             var result = await _userManager.DeleteAsync(user);
 
             return result.ToApplicationResult();
         }
+        public virtual async Task<ResultContainer> DeleteUserAsync(Guid userId)
+        {
+            IAppUser user = await GetUserFormUserManagerAsync(userId);
 
-        public abstract Task<ResultContainer> DeleteUserAsync(Guid userId);
+            var result = await _userManager.DeleteAsync(user);
+
+            return result.ToApplicationResult();
+        }
+        private async Task<IAppUser> GetUserFormUserManagerAsync(Guid userId)
+        {
+            return await _userManager.Users.FirstAsync(o => o.Id.CompareTo(userId) == 0);
+        }
+        public virtual async Task<ResultContainer> DeleteCurrentUserAsync()
+        {
+            if (!_currentUserService.IsUserAuthenticated)
+                return new ResultContainer(false, new[] { "" });
+
+            var user = await GetUserFormUserManagerAsync(_currentUserService.UserId);
+            var result = await _userManager.DeleteAsync(user);
+            return result.ToApplicationResult();
+        }
+
+        public async Task<(ResultContainer Result, Guid UserId)> CreateUserAsync(string userName, string password)
+        {
+            var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow)
+            {
+                UserName = userName,
+            };
+
+            var result = await _userManager.CreateAsync(user);
+
+            return (result.ToApplicationResult(), user.Id);
+        }
     }
 }
