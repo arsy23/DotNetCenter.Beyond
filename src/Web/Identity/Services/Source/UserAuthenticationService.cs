@@ -1,6 +1,7 @@
 ﻿namespace DotNetCenter.Beyond.Web.Identity.Services
 {
     using DotNetCenter.Beyond.Web.Identity.Core;
+    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
     using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices;
     using DotNetCenter.Core.ExceptionHandlers;
     using Microsoft.AspNetCore.Identity;
@@ -15,19 +16,20 @@
     {
         private readonly IdentityDbService _context;
         private readonly CurrentUserService _currentUserService;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManagerService _userManager;
+        private readonly SignInManagerService _signInManager;
 
-        public BaseIdentityService IdentityService { get; set; }
+        public IdentityService IdentityService => _identityService;
+        private readonly IdentityService _identityService;
         public UserAuthenticationService(
             IdentityDbService context,
-            BaseIdentityService identityService,
+            IdentityService identityService,
             CurrentUserService currentUserService,
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManagerService userManager,
+            SignInManagerService signInManager)
         {
             _context = context;
-            IdentityService = identityService;
+            _identityService = identityService;
             _userManager = userManager;
             _signInManager = signInManager;
             _currentUserService = currentUserService;
@@ -44,11 +46,11 @@
                 throw new NotFoundException("IdentityUser UserId not found!");
 
             if (!_currentUserService.TrySetUsername())
-                throw new NotFoundException("IdentityUser UserName not found!");
+                throw new NotFoundException("IdentityUser Username not found!");
 
             var claims = new List<Claim>
         {
-            new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Sub, _currentUserService.UserName),
+            new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Sub, _currentUserService.Username),
             new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(ClaimTypes.NameIdentifier, _currentUserService.UserId.ToString())
         };

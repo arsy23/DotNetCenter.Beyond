@@ -7,7 +7,7 @@
         bool TrySetUsername();
         bool TrySetUserId();
         Guid UserId { get; }
-        string UserName { get; }
+        string Username { get; }
         public bool IsUserAuthenticated { get; }
     }
 }

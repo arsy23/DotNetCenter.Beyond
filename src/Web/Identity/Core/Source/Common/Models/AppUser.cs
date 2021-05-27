@@ -1,6 +1,5 @@
 ﻿namespace DotNetCenter.Beyond.Web.Identity.Core.Models
 {
-    using DotNetCenter.Core.Entities;
     using Microsoft.AspNetCore.Identity;
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -15,9 +14,38 @@
             _createdDateTime = createdDateTime;
         }
 
+        public virtual bool ValidateUsername()
+        {
+            if (!string.IsNullOrEmpty(_username))
+                return true;
+
+            if (ValidateIdentityUser())
+                return true;
+
+            return !string.IsNullOrEmpty(_identityUser.UserName);
+        }
+        public virtual bool ValidateEmail()
+        {
+            if (!string.IsNullOrEmpty(_email))
+                return true;
+
+            if (ValidateIdentityUser())
+                return true;
+
+            return !string.IsNullOrEmpty(_identityUser.Email);
+        }
+
+        public virtual bool ValidateIdentityUser()
+        {
+            return TrySetIdentityUser();
+        }
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public new Guid Id => _id;
         private readonly Guid _id;
+
+        public string PlainPassword => _plainPassword;
+        private readonly string _plainPassword;
         public string ProfilePictureAddress { get; protected set; } = "/user/images/profile/default.png";
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
@@ -36,10 +64,17 @@
         public Guid CreatedBy => _creatorId;
         private readonly Guid _creatorId;
 
-        public DateTime CreatedDateTime => throw new NotImplementedException();
-
-
+        public DateTime CreatedDateTime => _createdDateTime;
         private readonly DateTime _createdDateTime;
+
+        public string Username => _username;
+        private readonly string _username;
+
+        public IdentityUser IdentityUser => _identityUser;
+        private IdentityUser _identityUser;
+        public string Email => _email;
+        private readonly string _email;
+
         public void RegisterModifiedInformation(Guid modifierId, DateTime modifiedDateTime)
         {
             _lastModifierId = modifierId;
@@ -47,8 +82,11 @@
         }
         #endregion
         #region GetIdentityUser()
-        public virtual IdentityUser GetIdentityUser()
+        public virtual bool TrySetIdentityUser()
         {
+            if (_identityUser is not null)
+                return true;
+
             var idUser = new IdentityUser(userName: this.UserName)
             {
                 Id = this.Id.ToString(),
@@ -67,7 +105,25 @@
                 LockoutEnabled = this.LockoutEnabled,
                 LockoutEnd = this.LockoutEnd
             };
-            return (IdentityUser)idUser;
+            try
+            {
+                _identityUser = idUser;
+            }
+            catch (InvalidCastException ex)
+            {
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            if (_identityUser is null)
+                return false;
+            if (string.IsNullOrEmpty(_identityUser.UserName))
+                return false;
+
+            return true;
         }
         #endregion
     }

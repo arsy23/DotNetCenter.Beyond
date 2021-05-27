@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices
+﻿namespace DotNetCenter.Beyond.Web.Identity.Core
 {
     using System;
     using System.Threading.Tasks;
