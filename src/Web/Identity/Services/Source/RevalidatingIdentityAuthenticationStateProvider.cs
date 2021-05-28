@@ -20,7 +20,7 @@ namespace DotNetCenter.Beyond.Web.Identity.Services
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IdentityOptions _options;
         public RevalidatingIdentityAuthenticationStateProvider(ILoggerFactory loggerFactory,
-                                                                UserManagerService userManagerService,
+                                                               UserManagerService<IAppUser> userManagerService,
                                                                IServiceScopeFactory scopeFactory,
                                                                IOptions<IdentityOptions> optionsAccessor)
             : base(loggerFactory)
@@ -30,7 +30,7 @@ namespace DotNetCenter.Beyond.Web.Identity.Services
             _options = optionsAccessor.Value;
         }
 
-        private  readonly UserManagerService _userManager;
+        private  readonly UserManagerService<IAppUser> _userManager;
         protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(30);
         protected override async Task<bool> ValidateAuthenticationStateAsync(AuthenticationState authenticationState,
                                                                              CancellationToken cancellationToken)
@@ -39,7 +39,6 @@ namespace DotNetCenter.Beyond.Web.Identity.Services
             var scope = _scopeFactory.CreateScope();
             try
             {
-                var userManager = scope.ServiceProvider.GetRequiredService<UserManagerService>();
                 return await ValidateSecurityStampAsync(authenticationState.User);
             }
             finally

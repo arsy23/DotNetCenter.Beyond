@@ -2,6 +2,7 @@
 {
     using DotNetCenter.Beyond.Web.Identity.Core;
     using DotNetCenter.Beyond.Web.Identity.Core.Managers;
+    using DotNetCenter.Beyond.Web.Identity.Core.Models;
     using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices;
     using DotNetCenter.Core.ExceptionHandlers;
     using Microsoft.AspNetCore.Identity;
@@ -16,8 +17,8 @@
     {
         private readonly IdentityDbService _context;
         private readonly CurrentUserService _currentUserService;
-        private readonly UserManagerService _userManager;
-        private readonly SignInManagerService _signInManager;
+        private readonly UserManagerService<IAppUser> _userManager;
+        private readonly SignInManagerService<IAppUser> _signInManager;
 
         public IdentityService IdentityService => _identityService;
         private readonly IdentityService _identityService;
@@ -25,8 +26,8 @@
             IdentityDbService context,
             IdentityService identityService,
             CurrentUserService currentUserService,
-            UserManagerService userManager,
-            SignInManagerService signInManager)
+            UserManagerService<IAppUser> userManager,
+            SignInManagerService<IAppUser> signInManager)
         {
             _context = context;
             _identityService = identityService;

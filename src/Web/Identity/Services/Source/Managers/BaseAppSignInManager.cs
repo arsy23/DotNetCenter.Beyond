@@ -13,7 +13,7 @@
     using System.Text;
     using System.Threading.Tasks;
     public abstract class BaseAppSignInManager
-        : SignInManager<IAppUser>, SignInManagerService
+        : SignInManager<IAppUser>, SignInManagerService<IAppUser>
     {
         protected BaseAppSignInManager(
             UserManager<IAppUser> userManager,

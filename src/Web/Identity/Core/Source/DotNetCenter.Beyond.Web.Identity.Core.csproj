@@ -77,8 +77,4 @@
 
 	<ItemGroup Condition="'$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)'">
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="DependencyResolution\" />
-	</ItemGroup>
 </Project>
