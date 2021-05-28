@@ -11,16 +11,16 @@
     public abstract class BaseIdentityService : IdentityService
     {
 
-        protected readonly UserManagerService _userManager;
+        protected readonly UserManagerService<IAppUser> _userManager;
         protected readonly CurrentUserService _currentUserService;
-        public BaseIdentityService(UserManagerService userManager,
+        public BaseIdentityService(UserManagerService<IAppUser> userManager,
             CurrentUserService currentUserService)
         {
             _userManager = userManager;
             _currentUserService = currentUserService;
         }
 
-        public virtual async Task<string> GetUserNameAsync(Guid userId)
+        public virtual async Task<string> GetUsernameAsync(Guid userId)
         {
             if (!_currentUserService.IsUserAuthenticated)
                 return "";
@@ -61,7 +61,7 @@
         {
             var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow)
             {
-                UserName = userName,
+                Username = userName,
             };
 
             var result = await _userManager.CreateAsync(user);

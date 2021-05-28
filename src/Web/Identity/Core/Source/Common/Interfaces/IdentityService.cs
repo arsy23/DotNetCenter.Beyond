@@ -5,7 +5,7 @@
     using DotNetCenter.Core.ErrorHandlers;
     public interface IdentityService 
     {
-        Task<string> GetUserNameAsync(Guid userId);
+        Task<string> GetUsernameAsync(Guid userId);
         Task<(ResultContainer Result, Guid UserId)> CreateUserAsync(string userName, string password);
         Task<ResultContainer> DeleteUserAsync(Guid userId);
     }

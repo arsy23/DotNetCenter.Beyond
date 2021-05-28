@@ -16,7 +16,7 @@
     using DotNetCenter.Beyond.Web.Identity.Core.Managers;
 
     public abstract class BaseAppUserManager
-        : UserManager<IAppUser>, UserManagerService
+        : UserManager<IAppUser>, UserManagerService<IAppUser>
     {
         protected BaseAppUserManager(IUserStore<IAppUser> store,
                                              IOptions<IdentityOptions> optionsAccessor,

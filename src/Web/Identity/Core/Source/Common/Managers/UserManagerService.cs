@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace DotNetCenter.Beyond.Web.Identity.Core.Managers
 {
-    public interface UserManagerService
+    public interface UserManagerService : UserManagerService<IAppUser>
+    {
+    }
+    public interface UserManagerService<TAppUser>
+        where TAppUser : IAppUser
     {
         #region CreateAsync
-        public Task<IdentityResult> CreateAsync(IAppUser user);
-        public Task<IdentityResult> CreateAsync(IAppUser user, string password);
+        public Task<IdentityResult> CreateAsync(TAppUser user);
+        public Task<IdentityResult> CreateAsync(TAppUser user, string password);
         #endregion
         #region DeleteAsync
         //
@@ -25,13 +29,13 @@ namespace DotNetCenter.Beyond.Web.Identity.Core.Managers
         // Returns:
         //     The System.Threading.Tasks.Task that represents the asynchronous operation, containing
         //     the Microsoft.AspNetCore.Identity.IdentityResult of the operation.
-        public Task<IdentityResult> DeleteAsync(IAppUser user);
+        public Task<IdentityResult> DeleteAsync(TAppUser user);
         #endregion
         #region Users
         //
         // Summary:
         //     Returns an IQueryable of users if the store is an IQueryableUserStore
-        public virtual IQueryable<IAppUser> Users
+        public virtual IQueryable<TAppUser> Users
         {
             get
             {
@@ -40,7 +44,7 @@ namespace DotNetCenter.Beyond.Web.Identity.Core.Managers
         }
         #endregion
         #region GetUserAsync
-        public Task<IAppUser> GetUserAsync(ClaimsPrincipal principal);
+        public Task<TAppUser> GetUserAsync(ClaimsPrincipal principal);
         #endregion
         #region SupportsUserSecurityStamp
         //
@@ -63,7 +67,7 @@ namespace DotNetCenter.Beyond.Web.Identity.Core.Managers
         // Returns:
         //     The System.Threading.Tasks.Task that represents the asynchronous operation, containing
         //     the security stamp for the specified user.
-        public Task<string> GetSecurityStampAsync(IAppUser user);
+        public Task<string> GetSecurityStampAsync(TAppUser user);
         #endregion
     }
 }
