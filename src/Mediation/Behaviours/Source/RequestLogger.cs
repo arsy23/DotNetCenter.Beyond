@@ -26,7 +26,7 @@ namespace DotNetCenter.Beyond.Mediation.Behaviours
         }
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
-            var userName = await _identityService.GetUserNameAsync(_currentUserService.UserId);
+            var userName = await _identityService.GetUsernameAsync(_currentUserService.UserId);
             _logger.LogInformation("Request: {Name} {@UserId} {@UserName} {@Request}", typeof(TRequest).Name, _currentUserService.UserId, userName, request);
         }
     }

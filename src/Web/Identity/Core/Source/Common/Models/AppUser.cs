@@ -22,7 +22,7 @@
             if (ValidateIdentityUser())
                 return true;
 
-            return !string.IsNullOrEmpty(_identityUser.Username);
+            return !string.IsNullOrEmpty(_identityUser.UserName);
         }
         public virtual bool ValidateEmail()
         {
@@ -96,9 +96,9 @@
                 PhoneNumberConfirmed = this.PhoneNumberConfirmed,
                 PhoneNumber = this.PhoneNumber,
                 PasswordHash = this.PasswordHash,
-                Username = this.Username,
+                UserName = this.Username,
                 NormalizedEmail = this.NormalizedEmail,
-                NormalizedUsername = this.NormalizedUsername,
+                NormalizedUserName = this.NormalizedUserName,
                 ConcurrencyStamp = this.ConcurrencyStamp,
                 Email = this.Email,
                 EmailConfirmed = this.EmailConfirmed,
@@ -120,7 +120,7 @@
 
             if (_identityUser is null)
                 return false;
-            if (string.IsNullOrEmpty(_identityUser.Username))
+            if (string.IsNullOrEmpty(_identityUser.UserName))
                 return false;
 
             return true;

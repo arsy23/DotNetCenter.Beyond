@@ -1,5 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Common
 {
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -10,10 +11,10 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    public interface IAppStartup
+    public interface IAppStartup<TConfiguration, TEnvironment, TLogger>
     {
-        IConfiguration Configuration { get; }
+        TConfiguration Configuration { get; }
         void ConfigureServices(IServiceCollection services);
-        void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logger);
+        void Configure(IApplicationBuilder app, TEnvironment env, TLogger logger);
     }
 }

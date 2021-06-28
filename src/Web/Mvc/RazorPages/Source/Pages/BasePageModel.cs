@@ -1,4 +1,4 @@
-﻿namespace DotNetCenter.Beyond.Web.Mvc.RazorPages.PageModels
+﻿namespace DotNetCenter.Beyond.Web.Mvc.RazorPages.Pages
 {
     using MediatR;
     using global::AutoMapper;
