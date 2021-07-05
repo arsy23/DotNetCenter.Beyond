@@ -1,5 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Middlewares
 {
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Logging;
@@ -8,7 +9,7 @@
     using System.Text;
     public static class DefaultRazorpagesMiddlewareExtension
     {
-        public static IApplicationBuilder UseWeb(this IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logger)
+        public static IApplicationBuilder UseWeb(this IApplicationBuilder app, SupportWebHosting env, ILoggerFactory logger)
         {
             app.UseStopWatchMiddleware(env, logger);
 

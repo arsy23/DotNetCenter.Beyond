@@ -15,6 +15,6 @@
     {
         TConfiguration Configuration { get; }
         void ConfigureServices(IServiceCollection services);
-        void Configure(IApplicationBuilder app, TEnvironment env, TLogger logger);
+        void Configure(IApplicationBuilder app);
     }
 }

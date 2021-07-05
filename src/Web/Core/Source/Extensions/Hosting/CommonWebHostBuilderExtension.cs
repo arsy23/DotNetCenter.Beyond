@@ -19,12 +19,12 @@
     {
  
         
-        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup>(
+        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup, TConfuguration, TEnvironement, TLogger>(
             string envName
             , string contentRootPath
             , string webHostBuilderBasePath
             , string[] args)
-            where TStartup :  class, IAppStartup
+            where TStartup :  class, IAppStartup<TConfuguration, TEnvironement, TLogger>
         {
                 return new WebHostBuilder()
                  .UseContentRoot(contentRootPath)
@@ -35,7 +35,7 @@
                  .ConfigureDefaultLogging()
                .UseStartup<TStartup>();
         }
-        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup>(
+        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup, TConfuguration, TEnvironement, TLogger>(
                                                 string envName
                                                 , string contentRootPath
                                                 , string webHostBuilderBasePath
@@ -52,7 +52,7 @@
                                                 , int limitKeepAliveTimeout = 30
                                                 , int RequestHeadersTimeout = 30
         )
-            where TStartup : class , IAppStartup
+            where TStartup : class , IAppStartup<TConfuguration, TEnvironement, TLogger>
         {
             return new WebHostBuilder()
          .UseContentRoot(contentRootPath)

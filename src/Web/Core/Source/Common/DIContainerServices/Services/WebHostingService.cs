@@ -8,13 +8,13 @@
         : SupportWebHosting
     {
         #region Constructor
-        public WebHostingService(IWebHostEnvironment webHostEnvService) 
-            => _webHostEnvService = webHostEnvService;
+        public WebHostingService(IWebHostEnvironmentServiceWrapper wrapper) 
+            => _serviceWrapper = wrapper;
         #endregion
-        public IWebHostEnvironment WebHostEnvService => _webHostEnvService;
-        private readonly IWebHostEnvironment _webHostEnvService;
+        public IWebHostEnvironmentServiceWrapper ServiceWrapper => _serviceWrapper;
 
-        public string WebEnvironmentName
-            => _webHostEnvService.EnvironmentName;
+        public IWebHostEnvironment Service => _serviceWrapper.Service;
+
+        private readonly IWebHostEnvironmentServiceWrapper _serviceWrapper;
     }
 }

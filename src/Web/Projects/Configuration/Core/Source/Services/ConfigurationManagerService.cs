@@ -57,7 +57,7 @@
 
         public IWebHostEnvironment GetWebHostEnvService() 
             => WebHostingService
-                .WebHostEnvService;
+                .Service;
         public string GetWebHostEnvName()
             => GetWebHostEnvService()
             .EnvironmentName;

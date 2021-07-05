@@ -1,0 +1,1 @@
+Find By #### Pattern, Wrapping For Encapsulation Hide Member

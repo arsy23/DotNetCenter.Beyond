@@ -51,7 +51,7 @@
             return host;
         }
 
-        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup>(
+        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup, TConfuguration, TEnvironement, TLogger>(
                                                 string envName
                                                 , string contentRootPath
                                                 , string webHostBuilderBasePath
@@ -68,7 +68,7 @@
 )
     where TStartup :
     class
-    , IAppStartup
+    , IAppStartup<TConfuguration, TEnvironement, TLogger>
         {
             return new WebHostBuilder()
          .UseContentRoot(contentRootPath)

@@ -79,10 +79,6 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(MicExtDepInjSecondaryPackageVarsion)" />
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="$(MicExtDepInjSecondaryPackageVarsion)" />
 	</ItemGroup>
-
-	<ItemGroup>
-		
-	</ItemGroup>
 	
 	
 </Project>

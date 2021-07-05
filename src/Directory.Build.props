@@ -18,9 +18,9 @@
 	  <LangVersion>latest</LangVersion>
 
 	  <RepositoryUrl>https://github.com/arsalanfallahpour/DotNetCenter.Beyond.git</RepositoryUrl>
-	  <ClasslibraryVersion>0.1.14</ClasslibraryVersion>
-	  <FileVersion>0.1.14</FileVersion>
-	  <AssemblyVersion>0.1.14</AssemblyVersion>
+	  <ClasslibraryVersion>0.1.15</ClasslibraryVersion>
+	  <FileVersion>0.1.15</FileVersion>
+	  <AssemblyVersion>0.1.15</AssemblyVersion>
 
 	  <MicrosoftCodeAnalysisNetAnalyzersPackageVersion>3.3.2</MicrosoftCodeAnalysisNetAnalyzersPackageVersion>
 	  <MicrosoftNetCompilersToolsetPackageVersion>3.9.0-2.final</MicrosoftNetCompilersToolsetPackageVersion>
