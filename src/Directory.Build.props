@@ -18,7 +18,8 @@
 	  <LangVersion>latest</LangVersion>
 
 	  <RepositoryUrl>https://github.com/arsalanfallahpour/DotNetCenter.Beyond.git</RepositoryUrl>
-	  <ClasslibraryVersion>0.1.15</ClasslibraryVersion>
+
+    <ClasslibraryVersion>0.1.15</ClasslibraryVersion>
 	  <FileVersion>0.1.15</FileVersion>
 	  <AssemblyVersion>0.1.15</AssemblyVersion>
 

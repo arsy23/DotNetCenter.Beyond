@@ -61,7 +61,7 @@
         {
             var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow)
             {
-                UserName = userName,
+                Username = userName,
             };
 
             var result = await _userManager.CreateAsync(user);

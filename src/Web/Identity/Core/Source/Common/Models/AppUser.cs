@@ -98,7 +98,7 @@
                 PasswordHash = this.PasswordHash,
                 UserName = this.Username,
                 NormalizedEmail = this.NormalizedEmail,
-                NormalizedUserName = this.NormalizedUserName,
+                NormalizedUsername = this.NormalizedUsername,
                 ConcurrencyStamp = this.ConcurrencyStamp,
                 Email = this.Email,
                 EmailConfirmed = this.EmailConfirmed,
