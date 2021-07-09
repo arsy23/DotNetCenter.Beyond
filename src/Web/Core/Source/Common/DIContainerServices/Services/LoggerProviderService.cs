@@ -11,15 +11,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using DotNetCenter.Beyond.Web.Core.Common;
 namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services
 {
-    public class LoggingService<TController>
-        : SupportLoggingServices<TController>
-        where TController : ProcessableEntry
+    public class LoggerProviderService
+            : SupportLoggerProviders
     {
         #region Constructor
-        public LoggingService(ILogger<TController> logger) => _logger = logger;
+        public LoggerProviderService(ILoggerFactory factory)
+            => _factory = factory;
         #endregion
 
-        public ILogger<TController> Logger => _logger;
-        private readonly ILogger<TController> _logger;
+        public ILoggerFactory Factory => _factory;
+        private readonly ILoggerFactory _factory;
     }
 }

@@ -12,17 +12,24 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    public abstract class BaseAppSignInManager
-        : SignInManager<IAppUser>, SignInManagerService<IAppUser>
+    public abstract class BaseAppSignInManager<TAppUser>
+        : SignInManager<TAppUser>, SignInManagerService<TAppUser>
+        #region Constraints
+        //dc#1#  developer: development cases
+        //Case 2 : For SwitchContects internal 
+        where TAppUser : AppUser
+        //Case 1 : For SwitchContects of Code To Generic Types 
+        //where TAppUser : class, IAppUser
+        #endregion
     {
         protected BaseAppSignInManager(
-            UserManager<IAppUser> userManager,
+            UserManager<TAppUser> userManager,
             IHttpContextAccessor contextAccessor,
-            IUserClaimsPrincipalFactory<IAppUser> claimsFactory,
+            IUserClaimsPrincipalFactory<TAppUser> claimsFactory,
             IOptions<IdentityOptions> optionsAccessor,
-            ILogger<BaseAppSignInManager> logger,
+            ILogger<BaseAppSignInManager<TAppUser>> logger,
             IAuthenticationSchemeProvider schemes,
-            IUserConfirmation<IAppUser> confirmation) 
+            IUserConfirmation<TAppUser> confirmation) 
             : base(
                   userManager,
                   contextAccessor,

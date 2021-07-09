@@ -1,6 +1,5 @@
 ﻿ namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.DependencyContainers
 {
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services;
     using DotNetCenter.Beyond.Web.Core.Controllers;
     using Microsoft.Extensions.DependencyInjection;
@@ -14,10 +13,9 @@
     {
         public void AddAspNetCoreService(ref IServiceCollection services)
         {
-            services.AddWebHostingService();
             services.AddTransient<SupportHttpContextServices, HttpContextServices>();
-            services.AddSingleton<SupportConfiguration, ConfigurationService>();
             services.AddTransient(typeof(SupportLoggingServices<>), typeof(LoggingService<>));
+            services.TryAddLoggerProviderServices();
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.DependencyContainers
 {
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.DependencyContainers;
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services;
     using Microsoft.Extensions.DependencyInjection;
     using System;

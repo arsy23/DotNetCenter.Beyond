@@ -17,9 +17,17 @@
                 .AddJsonFile($"appsettings.{applicationEnvironment}.json", true)
                 .AddEnvironmentVariables()
                 .Build();
-            var path = args[1];
-             basePath = path;
-            Console.WriteLine($"base path : {basePath}");
+            if (args.Length == 1)
+            {
+                basePath = args[0] + $"{separator}";
+                Console.WriteLine($"base path : {basePath}");
+            }
+            if (args.Length == 2)
+            {
+                basePath = args[1] + $"{separator}";
+                Console.WriteLine($"base path : {basePath}");
+            }
+
             return Create(configuration);
         }
     }

@@ -6,7 +6,6 @@
     using System.Net;
     using System.Text;
     using System.Threading.Tasks;
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using DotNetCenter.Beyond.Web.Core.Common;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -51,7 +50,7 @@
             return host;
         }
 
-        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup, TConfuguration, TEnvironement, TLogger>(
+        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup>(
                                                 string envName
                                                 , string contentRootPath
                                                 , string webHostBuilderBasePath
@@ -67,8 +66,7 @@
                                                 , int minResponseDataRateGracePeriod = 10
 )
     where TStartup :
-    class
-    , IAppStartup<TConfuguration, TEnvironement, TLogger>
+    class, IAppStartup
         {
             return new WebHostBuilder()
          .UseContentRoot(contentRootPath)

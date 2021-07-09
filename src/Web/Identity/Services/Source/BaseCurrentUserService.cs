@@ -7,12 +7,19 @@
     using DotNetCenter.Beyond.Web.Identity.Core.Models;
     using Microsoft.AspNetCore.Http;
 
-    public abstract class BaseCurrentUserService
+    public abstract class BaseCurrentUserService<TAppUser>
         : CurrentUserService
+        #region Constraints
+        //dc#1#  developer: development cases
+        //Case 2 : For SwitchContects internal 
+        where TAppUser : AppUser
+        //Case 1 : For SwitchContects of Code To Generic Types 
+        //where TAppUser : class, IAppUser
+        #endregion
     {
         public BaseCurrentUserService(IHttpContextAccessor httpContextAccessor)
             => HttpContextAccessor = httpContextAccessor;
-        public abstract IAppUser TryGetUser(out IAppUser user);
+        public abstract TAppUser TryGetUser(out TAppUser user);
         public bool TrySetUsername()
         {
             var userName = HttpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Name);

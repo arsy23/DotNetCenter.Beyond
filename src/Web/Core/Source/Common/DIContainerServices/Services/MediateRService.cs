@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
-using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+
 namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services
 {
     public class MediateRService 

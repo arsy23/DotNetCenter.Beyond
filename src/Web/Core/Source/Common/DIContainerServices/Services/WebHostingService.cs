@@ -1,6 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services
 {
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+    
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;

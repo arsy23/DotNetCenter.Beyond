@@ -1,6 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Extensions
 {
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using System;

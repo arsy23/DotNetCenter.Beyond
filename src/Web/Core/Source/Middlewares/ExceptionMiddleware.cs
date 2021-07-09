@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
     using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices;
 
     public static class ExceptionMiddleware
     {

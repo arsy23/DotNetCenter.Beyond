@@ -56,7 +56,6 @@
             var result = await _userManager.DeleteAsync(user);
             return result.ToApplicationResult();
         }
-
         public async Task<(ResultContainer Result, Guid UserId)> CreateUserAsync(string userName, string password)
         {
             var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow)

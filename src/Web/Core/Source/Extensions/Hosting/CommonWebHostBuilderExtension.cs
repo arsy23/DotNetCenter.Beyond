@@ -8,23 +8,25 @@
     using System.Net;
     using System.Text;
     using System.Threading.Tasks;
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using DotNetCenter.Beyond.Web.Core.Common;
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.DependencyContainers;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     public static class CommonWebHostBuilderExtension
     {
  
         
-        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup, TConfuguration, TEnvironement, TLogger>(
+        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup>(
             string envName
             , string contentRootPath
             , string webHostBuilderBasePath
             , string[] args)
-            where TStartup :  class, IAppStartup<TConfuguration, TEnvironement, TLogger>
+            where TStartup :  class,
+            IAppStartup
         {
                 return new WebHostBuilder()
                  .UseContentRoot(contentRootPath)
@@ -33,9 +35,13 @@
                  .UseDefaultKestrel()
                  .UseIISIntegration()
                  .ConfigureDefaultLogging()
+                .ConfigureServices((hostContext) =>
+                {
+                    new PreConfigurationDIC().AddWebPreConfigurations(ref hostContext);
+                })
                .UseStartup<TStartup>();
         }
-        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup, TConfuguration, TEnvironement, TLogger>(
+        public static IWebHostBuilder CreateDotNetCenterWebHostBuilder<TStartup>(
                                                 string envName
                                                 , string contentRootPath
                                                 , string webHostBuilderBasePath
@@ -52,7 +58,7 @@
                                                 , int limitKeepAliveTimeout = 30
                                                 , int RequestHeadersTimeout = 30
         )
-            where TStartup : class , IAppStartup<TConfuguration, TEnvironement, TLogger>
+            where TStartup : class , IAppStartup
         {
             return new WebHostBuilder()
          .UseContentRoot(contentRootPath)
@@ -72,6 +78,10 @@
                 RequestHeadersTimeout)
         .UseIISIntegration()
         .ConfigureDefaultLogging()
+        .ConfigureServices((hostContext) =>
+        {
+            new PreConfigurationDIC().AddWebPreConfigurations(ref hostContext);
+        })
         .UseStartup<TStartup>();
         }
     }

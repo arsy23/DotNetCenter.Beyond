@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces
+namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices
 {
     public interface SupportDateTime<TAppDateTimeNowService, TAppDateTimeService>
         where TAppDateTimeNowService : CompoundableDateTimeNow

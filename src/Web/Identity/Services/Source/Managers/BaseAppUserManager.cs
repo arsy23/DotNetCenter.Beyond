@@ -15,18 +15,25 @@
     using DotNetCenter.Core.ErrorHandlers;
     using DotNetCenter.Beyond.Web.Identity.Core.Managers;
 
-    public abstract class BaseAppUserManager
-        : UserManager<IAppUser>, UserManagerService<IAppUser>
+    public abstract class BaseAppUserManager<TAppUser>
+        : UserManager<TAppUser>, UserManagerService<TAppUser>
+        #region Constraints
+        //dc#1#  developer: development cases
+        //Case 2 : For SwitchContects internal 
+        where TAppUser : AppUser
+        //Case 1 : For SwitchContects of Code To Generic Types 
+        //where TAppUser : class, IAppUser
+        #endregion
     {
-        protected BaseAppUserManager(IUserStore<IAppUser> store,
+        protected BaseAppUserManager(IUserStore<TAppUser> store,
                                              IOptions<IdentityOptions> optionsAccessor,
-                                             IPasswordHasher<IAppUser> passwordHasher,
-                                             IEnumerable<IUserValidator<IAppUser>> userValidators,
-                                             IEnumerable<IPasswordValidator<IAppUser>> passwordValidators,
+                                             IPasswordHasher<TAppUser> passwordHasher,
+                                             IEnumerable<IUserValidator<TAppUser>> userValidators,
+                                             IEnumerable<IPasswordValidator<TAppUser>> passwordValidators,
                                              ILookupNormalizer keyNObjRelMappingalizer,
                                              IdentityErrorDescriber errors,
                                              IServiceProvider services,
-                                             ILogger<BaseAppUserManager> logger) 
+                                             ILogger<BaseAppUserManager<TAppUser>> logger) 
             : base(store,
                    optionsAccessor,
                    passwordHasher,
@@ -38,7 +45,7 @@
                    logger)
         {
         }
-        public new async Task<ResultContainer> CreateAsync(IAppUser user)
+        public new async Task<ResultContainer> CreateAsync(TAppUser user)
         {
            var idResult = await base.CreateAsync(user);
             return idResult.ToApplicationResult();

@@ -1,6 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Middlewares
 {
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
@@ -12,9 +12,10 @@
     {
         public static IApplicationBuilder UseStopWatchMiddleware(
                    this IApplicationBuilder app,
-                   SupportWebHosting env,
-                   ILoggerFactory loggerFactory)
+                   SupportPreConfiguration preConfiguration)
         {
+            var env = preConfiguration.WebHosting;
+            var loggerFactory = preConfiguration.LoggerProviders.Factory;
             if (env.Service.IsDevelopment())
                 app.Use(async (context, next) =>
                 {

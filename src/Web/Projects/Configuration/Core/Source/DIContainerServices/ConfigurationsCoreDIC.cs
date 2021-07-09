@@ -12,5 +12,9 @@
         {
             return services;
         }
+        public static IServiceCollection TryAddConfigurationsCoreServices(this IServiceCollection services)
+        {
+            return services;
+        }
     }
 }

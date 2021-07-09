@@ -8,6 +8,7 @@
     using System.Threading.Tasks;
     using DotNetCenter.Beyond.Web.Projects.Configuration.Core.Interfaces;
     using DotNetCenter.Beyond.Web.Projects.Configuration.Core.Services;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
 
     public static class ConfigurationManagerDIC
     {
@@ -18,6 +19,17 @@
             services
                 .AddTransient<SupportConfigurationManager, ConfigurationManagerService>()
                 .AddTransient<SupportJsonConfigurationManager, JsonConfigurationManagerService>();
+
+            return services;
+        }
+        public static IServiceCollection TryAddConfigurationManagerServices(this IServiceCollection services)
+        {
+            services
+                .TryAddConfigurationsCoreServices();
+            services
+                .TryAddTransient<SupportConfigurationManager, ConfigurationManagerService>();
+            services
+                .TryAddTransient<SupportJsonConfigurationManager, JsonConfigurationManagerService>();
 
             return services;
         }

@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.Mvc.Razor;
     using Microsoft.AspNetCore.Http;
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+    
     using DotNetCenter.Beyond.Web.Core.PageModels;
     using Microsoft.AspNetCore.Mvc.Razor.Extensions;
 

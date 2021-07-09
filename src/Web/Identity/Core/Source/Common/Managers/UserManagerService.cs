@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace DotNetCenter.Beyond.Web.Identity.Core.Managers
 {
     public interface UserManagerService : UserManagerService<IAppUser>
-    {
-    }
+    { }
     public interface UserManagerService<TAppUser>
         where TAppUser : IAppUser
     {

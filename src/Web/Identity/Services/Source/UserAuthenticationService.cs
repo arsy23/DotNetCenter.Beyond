@@ -26,6 +26,7 @@
             IdentityDbService context,
             IdentityService identityService,
             CurrentUserService currentUserService,
+//#??must confugured for dep inj
             UserManagerService<IAppUser> userManager,
             SignInManagerService<IAppUser> signInManager)
         {
