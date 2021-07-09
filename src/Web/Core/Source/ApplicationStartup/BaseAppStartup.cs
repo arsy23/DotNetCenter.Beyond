@@ -1,4 +1,4 @@
-﻿using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+﻿using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -10,17 +10,13 @@ using System.Threading.Tasks;
 
 namespace DotNetCenter.Beyond.Web.Core.Common
 {
-    public abstract class BaseAppStartup : IAppStartup<SupportConfiguration, SupportWebHosting, ILoggerFactory>
+    public abstract class BaseAppStartup : IAppStartup
     {
-        public BaseAppStartup(SupportConfiguration configuration, SupportWebHosting webHosting, ILoggerFactory logger)
-        {
-            Configuration = configuration;
-            WebHosting = webHosting;
-            LoggerFactory = logger;
-        }
-        public SupportConfiguration Configuration { get; }
-        public SupportWebHosting WebHosting { get; }
-        public ILoggerFactory LoggerFactory { get; }
+        public BaseAppStartup(SupportPreConfiguration providedServices) 
+            => _preProvidedServices = providedServices;
+
+        public SupportPreConfiguration PreProvidedServices => _preProvidedServices;
+        private readonly SupportPreConfiguration _preProvidedServices;
         public abstract void ConfigureServices(IServiceCollection services);
         public abstract void Configure(IApplicationBuilder app);
     }

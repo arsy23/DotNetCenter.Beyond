@@ -5,9 +5,6 @@ using System.Threading.Tasks;
 
 namespace DotNetCenter.Beyond.Web.Identity.Core.Managers
 {
-    public interface SignInManagerService : SignInManagerService<IAppUser>
-    {
-    }
     public interface SignInManagerService<TAppUser>
         where TAppUser : IAppUser
     {

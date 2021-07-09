@@ -11,12 +11,13 @@ namespace DotNetCenter.Beyond.Web.Identity.Core.DependencyResolution
 {
     public static class ManagerServicesDIC
     {
-        public static IServiceCollection AddManagerServices<TUserManager, TSignInManager>(this IServiceCollection services)
-            where TUserManager : class, UserManagerService<IAppUser>
-            where TSignInManager : class, SignInManagerService<IAppUser>
+        public static IServiceCollection AddManagerServices<TAppUser, TUserManager, TSignInManager>(this IServiceCollection services)
+            where TUserManager : class, UserManagerService<TAppUser>
+            where TSignInManager : class, SignInManagerService<TAppUser>
+            where TAppUser : AppUser
         {
-            services.AddSingleton<UserManagerService<IAppUser>, TUserManager>();
-            services.AddSingleton<SignInManagerService<IAppUser>, TSignInManager>();
+            services.AddSingleton<UserManagerService<TAppUser>, TUserManager>();
+            services.AddSingleton<SignInManagerService<TAppUser>, TSignInManager>();
             return services;
         }
     }

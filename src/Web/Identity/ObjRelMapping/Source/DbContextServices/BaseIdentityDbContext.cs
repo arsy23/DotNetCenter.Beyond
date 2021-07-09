@@ -10,9 +10,17 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using DotNetCenter.Beyond.Web.Identity.Core.Models;
 
-    public abstract  class BaseIdentityDbContext<TContext>
-        : IdentityDbContext<AppUser, AppRole, Guid, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
-        where TContext : IdentityDbContext<AppUser, AppRole, Guid, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
+    public abstract  class BaseIdentityDbContext
+        <TContext, TAppUser, TAppRole, TAppUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+        : IdentityDbContext<TAppUser, TAppRole, Guid, TAppUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+        where TContext : IdentityDbContext<TAppUser, TAppRole, Guid, TAppUserClaim, TUserRole, TUserLogin, TRoleClaim, TUserToken>
+        where TAppUser : AppUser
+        where TAppRole : AppRole
+        where TAppUserClaim : AppUserClaim
+        where TUserRole : AppUserRole
+        where TUserLogin : AppUserLogin
+        where TRoleClaim : AppRoleClaim
+        where TUserToken : AppUserToken
         , new()
     {
         public BaseIdentityDbContext()  { }

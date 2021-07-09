@@ -1,6 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Common
 {
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -11,9 +11,9 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    public interface IAppStartup<TConfiguration, TEnvironment, TLogger>
+    public interface IAppStartup
     {
-        TConfiguration Configuration { get; }
+        SupportPreConfiguration PreProvidedServices { get; }
         void ConfigureServices(IServiceCollection services);
         void Configure(IApplicationBuilder app);
     }

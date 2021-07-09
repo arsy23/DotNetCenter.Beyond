@@ -1,6 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Projects.Configuration.Core.Services
 {
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+    
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services;
     using DotNetCenter.Beyond.Web.Projects.Configuration.Core.Interfaces;
     using Microsoft.AspNetCore.Http;
@@ -13,6 +13,8 @@
     using Microsoft.Extensions.Configuration;
     using System.IO;
     using Microsoft.AspNetCore.Hosting;
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices;
+
     public class ConfigurationManagerService 
         : BaseConfigService
         , SupportConfigurationManager

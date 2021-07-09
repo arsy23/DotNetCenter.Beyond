@@ -1,6 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Projects.Configuration.Core.Services
 {
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+    
     using DotNetCenter.Beyond.Web.Projects.Configuration.Core;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Primitives;
@@ -10,6 +10,7 @@
     using Microsoft.Extensions.DependencyInjection;
     using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services;
     using Microsoft.AspNetCore.Http;
+    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices;
 
     public abstract  class BaseConfigService 
         : ConfigurationServices

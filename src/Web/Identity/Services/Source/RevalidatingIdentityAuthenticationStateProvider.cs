@@ -13,9 +13,13 @@ namespace DotNetCenter.Beyond.Web.Identity.Services
     using System.Security.Claims;
     using System.Threading;
     using System.Threading.Tasks;
-    public class RevalidatingIdentityAuthenticationStateProvider<TUser, TKeyUser> 
+    public class RevalidatingIdentityAuthenticationStateProvider<TAppUser, TKeyUser> 
         : RevalidatingServerAuthenticationStateProvider 
-        where TUser : IAppUser
+        //dc#1# developer: development cases
+        //Case 2 : For SwitchContects internal 
+        where TAppUser : AppUser
+        //Case 1 : For SwitchContects of Code To Generic Types 
+        //where TAppUser : class, IAppUser
     {
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IdentityOptions _options;

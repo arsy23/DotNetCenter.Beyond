@@ -1,5 +1,5 @@
 ﻿using MediatR;
-namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces
+namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices
 {
     public interface SupportMediateR
     {

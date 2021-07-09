@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
+
 using Microsoft.AspNetCore.Http;
 namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services
 {

@@ -1,17 +1,10 @@
 ﻿namespace DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Services
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using DotNetCenter.Beyond.Web.Core.Common.DIContainerServices.Interfaces;
     using Microsoft.AspNetCore.Http;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     public class HttpContextServices : SupportHttpContextServices
     {
         #region Constructor
-        public HttpContextServices(IHttpContextAccessor httpContextAccessor) 
+        public HttpContextServices(IHttpContextAccessor httpContextAccessor)
             => _httpContextAccessor = httpContextAccessor;
         #endregion
 
