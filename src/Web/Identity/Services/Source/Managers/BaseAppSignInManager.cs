@@ -1,7 +1,6 @@
 ﻿namespace DotNetCenter.Beyond.Web.Identity.Services.Managers
 {
-    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
-    using DotNetCenter.Beyond.Web.Identity.Core.Models;
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.Common.Models;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;

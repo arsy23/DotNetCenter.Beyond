@@ -63,6 +63,7 @@
 
 	<ItemGroup Condition=" ('$(TargetFramework)' == '$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)' == '$(SecondaryTargetNetFrameworkNames)')">
 		<PackageReference Include="DotNetCenter.Core.ExceptionHandlers" Version="$(DotNetCenterCorePrimaryPackageVersion)" />
+		<PackageReference Include="DotNetCenter.Core.Entities" Version="$(DotNetCenterCoreEntitiesPrimaryPackageVersion)" />
 	</ItemGroup>
 
 

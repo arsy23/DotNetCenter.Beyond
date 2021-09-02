@@ -10,10 +10,9 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using DotNetCenter.Beyond.Web.Identity.Core.Models;
     using DotNetCenter.Beyond.Web.Identity.Core;
     using DotNetCenter.Core.ErrorHandlers;
-    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.Common.Models;
 
     public abstract class BaseAppUserManager<TAppUser>
         : UserManager<TAppUser>, UserManagerService<TAppUser>

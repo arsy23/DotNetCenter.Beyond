@@ -64,7 +64,6 @@
 
 
 	<ItemGroup Condition=" ('$(TargetFramework)' == '$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)' == '$(SecondaryTargetNetFrameworkNames)')">
-		<PackageReference Include="DotNetCenter.Core.Entities" Version="$(DotNetCenterCoreEntitiesPrimaryPackageVersion)" />
 		<PackageReference Include="DotNetCenter.Core.ErrorHandlers" Version="$(DotNetCenterCorePrimaryPackageVersion)" />
 		<PackageReference Include="DotNetCenter.DateTime" Version="$(DotNetCenterDateTimePrimaryPackageVersion)" />
 	</ItemGroup>
@@ -76,5 +75,9 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)'">
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="DependencyResolution\" />
 	</ItemGroup>
 </Project>

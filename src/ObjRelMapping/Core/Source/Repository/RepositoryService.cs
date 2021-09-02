@@ -10,7 +10,7 @@
         : UpdateableRepository<TEntity, TKey>,
         DeletableRepository<TEntity, TKey>,
         AddableRepository<TEntity, TKey>
-        where TContext : DbService<TContext>
+        where TContext : DbService
         where TEntity : Entity<TKey>
         where TKey : struct 
     {

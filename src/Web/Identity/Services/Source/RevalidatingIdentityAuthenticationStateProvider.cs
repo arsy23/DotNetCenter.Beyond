@@ -1,7 +1,7 @@
 namespace DotNetCenter.Beyond.Web.Identity.Services
 {
-    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
-    using DotNetCenter.Beyond.Web.Identity.Core.Models;
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.Common.Models;
+    using DotNetCenter.Beyond.Web.Identity.Services.Managers;
     using Microsoft.AspNetCore.Components.Authorization;
     using Microsoft.AspNetCore.Components.Server;
     using Microsoft.AspNetCore.Identity;
@@ -24,7 +24,7 @@ namespace DotNetCenter.Beyond.Web.Identity.Services
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IdentityOptions _options;
         public RevalidatingIdentityAuthenticationStateProvider(ILoggerFactory loggerFactory,
-                                                               UserManagerService<IAppUser> userManagerService,
+                                                               UserManagerService<IIdentityUser> userManagerService,
                                                                IServiceScopeFactory scopeFactory,
                                                                IOptions<IdentityOptions> optionsAccessor)
             : base(loggerFactory)
@@ -34,7 +34,7 @@ namespace DotNetCenter.Beyond.Web.Identity.Services
             _options = optionsAccessor.Value;
         }
 
-        private  readonly UserManagerService<IAppUser> _userManager;
+        private  readonly UserManagerService<IIdentityUser> _userManager;
         protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(30);
         protected override async Task<bool> ValidateAuthenticationStateAsync(AuthenticationState authenticationState,
                                                                              CancellationToken cancellationToken)

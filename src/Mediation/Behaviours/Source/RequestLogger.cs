@@ -8,17 +8,20 @@ namespace DotNetCenter.Beyond.Mediation.Behaviours
     using DotNetCenter.Beyond.Web.Identity.Core;
     using System;
     using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices;
+    using DotNetCenter.Beyond.Web.Identity.Services;
+    using DotNetCenter.Beyond.Web.Identity.Services.Managers;
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.Common.Models;
 
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
         private readonly ILogger _logger;
         private readonly CurrentUserService _currentUserService;
-        private readonly IdentityService _identityService;
+        private readonly IdentityService<IIdentityUser> _identityService;
 
         public RequestLogger(
             ILogger<TRequest> logger,
             CurrentUserService currentUserService,
-            IdentityService identityService)
+            IdentityService<IIdentityUser> identityService)
         {
             _logger = logger;
             _currentUserService = currentUserService;
@@ -26,8 +29,14 @@ namespace DotNetCenter.Beyond.Mediation.Behaviours
         }
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
-            var userName = await _identityService.GetUsernameAsync(_currentUserService.UserId);
-            _logger.LogInformation("Request: {Name} {@UserId} {@UserName} {@Request}", typeof(TRequest).Name, _currentUserService.UserId, userName, request);
+            int? userId = -9845;
+            var userName = "Not Authorized User";
+            if (_currentUserService.IsUserAuthenticated())
+            {
+                userId = _currentUserService.UserId;
+                userName = await _identityService.GetUsernameAsync((int)_currentUserService.UserId);
+            }
+            _logger.LogInformation("Request: {Name} {@UserId} {@UserName} {@Request}", typeof(TRequest).Name, userId, userName, request);
         }
     }
 }

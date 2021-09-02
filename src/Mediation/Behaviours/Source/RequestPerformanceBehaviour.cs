@@ -8,18 +8,23 @@
     using MediatR;
     using System;
     using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.DbContextServices;
+    using DotNetCenter.Beyond.Web.Identity.Services.Managers;
+    using System.Security.Principal;
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.Common.Models;
+    using DotNetCenter.Beyond.Web.Identity.Services;
+
     public class RequestPerfObjRelMappinganceBehaviour<TRequest, TResponse> 
         : IPipelineBehavior<TRequest, TResponse>
     {
         private readonly Stopwatch _timer;
         private readonly ILogger<TRequest> _logger;
         private readonly CurrentUserService _currentUserService;
-        private readonly IdentityService _identityService;
+        private readonly IdentityService<IIdentityUser> _identityService;
 
         public RequestPerfObjRelMappinganceBehaviour(
             ILogger<TRequest> logger,
             CurrentUserService currentUserService,
-            IdentityService identityService)
+            IdentityService<IIdentityUser> identityService)
         {
             _timer = new Stopwatch();
             _logger = logger;
@@ -49,17 +54,17 @@
         {
             var logMessage = "Application Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId}";
             var requestName = typeof(TRequest).Name;
-            if (_currentUserService.TrySetUserId())
+            //if (_currentUserService.TrySetUserId())
                 await LogCriticalWithUserName(request, _timer.ElapsedMilliseconds, logMessage, requestName);
-            else
-                _logger.LogCritical(logMessage + "{@Request}", requestName, _timer.ElapsedMilliseconds, request);
+            //else
+            //    _logger.LogCritical(logMessage + "{@Request}", requestName, _timer.ElapsedMilliseconds, request);
         }
 
         private async Task LogCriticalWithUserName(TRequest request, long elapsedMilliseconds, string logMessage, string requestName)
         {
             var userId = _currentUserService.UserId;
-            if (_currentUserService.TrySetUsername())
-                _logger.LogCritical(logMessage + "{@UserName} {@Request}", requestName, elapsedMilliseconds, userId, _currentUserService.Username, request);
+             var username = _currentUserService?.Username ?? "UnAuthorized User %!%";
+            _logger.LogCritical(logMessage + "{@UserName} {@Request}", requestName, elapsedMilliseconds, userId, username, request);
         }
     }
 }

@@ -1,9 +1,9 @@
 namespace DotNetCenter.Beyond.ObjRelMapping.Core
 {
     using DotNetCenter.Beyond.ObjRelMapping.Core.DbContext;
-    public interface DbInitializer<TContext>
+    public interface DbInitializer
     {
-        public void Initialize(DbService<TContext> context);
-        public void SeedEverything(DbService<TContext> context);
+        public void Initialize(DbService context);
+        public void SeedEverything(DbService context);
     }
 }

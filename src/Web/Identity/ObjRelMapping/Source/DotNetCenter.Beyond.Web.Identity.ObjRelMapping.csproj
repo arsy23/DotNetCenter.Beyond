@@ -68,14 +68,21 @@
 
 	<ItemGroup Condition="'$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)'">
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(EfCorePrimaryPackageVarsion)" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EfCorePrimaryPackageVarsion)" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)'">
+
+<ItemGroup Condition="'$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)'">
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(EfCoreSecondaryPackageVarsion)" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EfCoreSecondaryPackageVarsion)" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\ObjRelMapping\Core\Source\DotNetCenter.Beyond.ObjRelMapping.Core.csproj" />
 		<ProjectReference Include="..\..\Core\Source\DotNetCenter.Beyond.Web.Identity.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="DependencyResolution\" />
 	</ItemGroup>
 </Project>

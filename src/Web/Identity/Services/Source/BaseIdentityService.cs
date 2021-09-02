@@ -1,71 +1,65 @@
 ﻿namespace DotNetCenter.Beyond.Web.Identity.Services
 {
+    using DotNetCenter.Beyond.ObjRelMapping.Core.Infrastructure.Common;
     using DotNetCenter.Beyond.Web.Identity.Core;
-    using DotNetCenter.Beyond.Web.Identity.Core.Managers;
-    using DotNetCenter.Beyond.Web.Identity.Core.Models;
+    using DotNetCenter.Beyond.Web.Identity.ObjRelMapping.Common.Models;
+    using DotNetCenter.Beyond.Web.Identity.Services.Managers;
     using DotNetCenter.Core.ErrorHandlers;
     using Microsoft.EntityFrameworkCore;
     using System;
     using System.Threading.Tasks;
 
-    public abstract class BaseIdentityService : IdentityService
+    public abstract class BaseIdentityService<TUserManagerService, TCurrentUserService, TAppUser>: IdentityService<TAppUser>
+        where TUserManagerService : UserManagerService<TAppUser>
+        where TCurrentUserService : CurrentUserService
+        where TAppUser : IIdentityUser
     {
 
-        protected readonly UserManagerService<IAppUser> _userManager;
-        protected readonly CurrentUserService _currentUserService;
-        public BaseIdentityService(UserManagerService<IAppUser> userManager,
-            CurrentUserService currentUserService)
+        protected readonly TUserManagerService _userManager;
+        protected readonly TCurrentUserService _currentUserService;
+        public BaseIdentityService(TUserManagerService userManager,
+            TCurrentUserService currentUserService)
         {
             _userManager = userManager;
             _currentUserService = currentUserService;
         }
 
-        public virtual async Task<string> GetUsernameAsync(Guid userId)
+        public virtual async Task<string> GetUsernameAsync(int userId)
         {
-            if (!_currentUserService.IsUserAuthenticated)
+            if (!_currentUserService.IsUserAuthenticated())
                 return "";
 
             var user = await _userManager.Users.FirstOrDefaultAsync(o => o.Id == userId);
 
-            return user.Username;
+            return user.UserName;
         }
-        public virtual async Task<ResultContainer> DeleteUserAsync(IAppUser user)
+        public virtual async Task<ResultContainer> DeleteUserAsync(TAppUser user)
         {
             var result = await _userManager.DeleteAsync(user);
 
             return result.ToApplicationResult();
         }
-        public virtual async Task<ResultContainer> DeleteUserAsync(Guid userId)
+        public virtual async Task<ResultContainer> DeleteUserAsync(int userId)
         {
-            IAppUser user = await GetUserFormUserManagerAsync(userId);
+            TAppUser user = await GetUserFormUserManagerAsync(userId);
 
             var result = await _userManager.DeleteAsync(user);
 
             return result.ToApplicationResult();
         }
-        private async Task<IAppUser> GetUserFormUserManagerAsync(Guid userId)
+        private async Task<TAppUser> GetUserFormUserManagerAsync(int? userId)
         {
-            return await _userManager.Users.FirstAsync(o => o.Id.CompareTo(userId) == 0);
+            return await _userManager.Users?.FirstAsync(o => o.Id == userId);
         }
         public virtual async Task<ResultContainer> DeleteCurrentUserAsync()
         {
-            if (!_currentUserService.IsUserAuthenticated)
+            if (!_currentUserService.IsUserAuthenticated())
                 return new ResultContainer(false, new[] { "" });
 
             var user = await GetUserFormUserManagerAsync(_currentUserService.UserId);
             var result = await _userManager.DeleteAsync(user);
             return result.ToApplicationResult();
         }
-        public async Task<(ResultContainer Result, Guid UserId)> CreateUserAsync(string userName, string password)
-        {
-            var user = new AppUser(Guid.NewGuid(), DateTime.UtcNow)
-            {
-                UserName = userName,
-            };
-
-            var result = await _userManager.CreateAsync(user);
-
-            return (result.ToApplicationResult(), user.Id);
-        }
+        public abstract  Task<(ResultContainer Result, int UserId)> CreateUserAsync(TAppUser user);
     }
 }

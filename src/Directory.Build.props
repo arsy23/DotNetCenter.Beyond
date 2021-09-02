@@ -18,9 +18,9 @@
 	  <LangVersion>latest</LangVersion>
 
 	  <RepositoryUrl>https://github.com/arsalanfallahpour/DotNetCenter.Beyond.git</RepositoryUrl>
-	  <ClasslibraryVersion>0.2.6</ClasslibraryVersion>
-	  <FileVersion>0.2.6</FileVersion>
-	  <AssemblyVersion>0.2.6</AssemblyVersion>
+	  <ClasslibraryVersion>0.2.11</ClasslibraryVersion>
+	  <FileVersion>0.2.11</FileVersion>
+	  <AssemblyVersion>0.2.11</AssemblyVersion>
 
 	  <MicrosoftCodeAnalysisNetAnalyzersPackageVersion>3.3.2</MicrosoftCodeAnalysisNetAnalyzersPackageVersion>
 	  <MicrosoftNetCompilersToolsetPackageVersion>3.9.0-2.final</MicrosoftNetCompilersToolsetPackageVersion>
@@ -79,7 +79,7 @@
 	  <DotNetCenterCorePrimaryPackageVersion>0.2.1</DotNetCenterCorePrimaryPackageVersion>
 
 
-	  <DotNetCenterCoreEntitiesPrimaryPackageVersion>0.2.2</DotNetCenterCoreEntitiesPrimaryPackageVersion>
+	  <DotNetCenterCoreEntitiesPrimaryPackageVersion>0.2.6</DotNetCenterCoreEntitiesPrimaryPackageVersion>
 	  <DotNetCenterCoreExceptionHandlersPrimaryPackageVersion>0.2.2</DotNetCenterCoreExceptionHandlersPrimaryPackageVersion>
 
 	  <AutoMapperExtMicDepInjPrimaryPackageVersion>8.1.1</AutoMapperExtMicDepInjPrimaryPackageVersion>

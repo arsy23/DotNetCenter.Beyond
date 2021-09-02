@@ -59,6 +59,7 @@
 
 	<ItemGroup Condition=" ('$(TargetFramework)' == '$(PrimaryTargetNetFrameworkNames)') OR ('$(TargetFramework)' == '$(SecondaryTargetNetFrameworkNames)')">
 		<PackageReference Include="DotNetCenter.Core" Version="$(DotNetCenterCorePrimaryPackageVersion)" />
+		<PackageReference Include="DotNetCenter.Core.Entities" Version="$(DotNetCenterCoreEntitiesPrimaryPackageVersion)" />
 	</ItemGroup>
 
 
@@ -66,6 +67,7 @@
 	<ItemGroup Condition="'$(TargetFramework)'=='$(PrimaryTargetNetFrameworkNames)'">
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCorePrimaryPackageVarsion)" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="$(EfCorePrimaryPackageVarsion)" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EfCorePrimaryPackageVarsion)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="$(MicExtConPrimaryPackageVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="$(MicExtConPrimaryPackageVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="$(MicExtConPrimaryPackageVersion)" />
@@ -74,13 +76,11 @@
 
 	<ItemGroup Condition="'$(TargetFramework)'=='$(SecondaryTargetNetFrameworkNames)'">
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreSecondaryPackageVarsion)" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EfCoreSecondaryPackageVarsion)" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="$(EfCoreSecondaryPackageVarsion)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="$(MicExtConSecondaryPackageVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="$(MicExtConSecondaryPackageVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="$(MicExtConSecondaryPackageVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="$(MicExtConSecondaryPackageVersion)" />
-	</ItemGroup>
-
-	<ItemGroup>
 	</ItemGroup>
 </Project>

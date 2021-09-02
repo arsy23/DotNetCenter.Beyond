@@ -11,10 +11,10 @@
     public class BaseRepository<TContext, TEntity, TKey> : RepositoryService<TContext, TEntity, TKey>
     where TKey : struct
     where TEntity : class, Entity<TKey>
-    where TContext : DbService<TContext>
+    where TContext : DbService
     {
-        protected readonly DbService<TContext> _dbService;
-        public BaseRepository(DbService<TContext> dbService)
+        protected readonly DbService _dbService;
+        public BaseRepository(TContext dbService)
             => _dbService = dbService;
         public async Task<TEntity> GetByIdAsync(TKey id)
             => await _dbService.Set<TEntity>().FindAsync(id);

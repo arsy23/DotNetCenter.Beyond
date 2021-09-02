@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     public abstract class BaseAuditableDbContext<TContext> 
 	: DbContext
-	, AuditableDbService<TContext> 
+	, AuditableDbService
 	where TContext : DbContext
     {
         private readonly string _defaultSchema;
@@ -24,15 +24,16 @@
         {
             if (!string.IsNullOrEmpty(_defaultSchema) && !string.IsNullOrWhiteSpace(_defaultSchema))
                 builder.HasDefaultSchema(_defaultSchema);
+            else
+                builder.HasDefaultSchema("dbo");
 
             //builder.ApplyConfigurationsFromAssembly(typeof(DatabaseService<>).Assembly);
 
             base.OnModelCreating(builder);
         }
-        public void Audit()
-            => _auditor.UpdateModifiedAll(ChangeTracker);
+        public virtual void Audit() => _auditor.UpdateModifiedAll(ChangeTracker);
         public abstract void Save();
-
+        public abstract Task<int> SaveAsync();
         public abstract Task<int> SaveAsync(CancellationToken cancellationToken = default);
     }
 }

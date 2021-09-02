@@ -4,10 +4,11 @@ namespace DotNetCenter.Beyond.ObjRelMapping.Core.DbContext
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    public interface AuditableDbService<TContext> 
+    public interface AuditableDbService
 	: IDisposable, IAsyncDisposable, AuditableDbContext, EntryableDbContext, SetableDbContext
     {   
         void Save();
+        Task<int> SaveAsync();
         Task<int> SaveAsync(CancellationToken cancellationToken = default);
     }
 }
