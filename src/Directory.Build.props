@@ -79,7 +79,7 @@
 	  <DotNetCenterCorePrimaryPackageVersion>0.2.1</DotNetCenterCorePrimaryPackageVersion>
 
 
-	  <DotNetCenterCoreEntitiesPrimaryPackageVersion>0.2.6</DotNetCenterCoreEntitiesPrimaryPackageVersion>
+	  <DotNetCenterCoreEntitiesPrimaryPackageVersion>0.2.7</DotNetCenterCoreEntitiesPrimaryPackageVersion>
 	  <DotNetCenterCoreExceptionHandlersPrimaryPackageVersion>0.2.2</DotNetCenterCoreExceptionHandlersPrimaryPackageVersion>
 
 	  <AutoMapperExtMicDepInjPrimaryPackageVersion>8.1.1</AutoMapperExtMicDepInjPrimaryPackageVersion>
